@@ -43,18 +43,17 @@ header{position:sticky;top:0;z-index:20;background:rgba(11,11,12,.88);backdrop-f
 
 /* hero */
 .hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:flex-end;overflow:hidden;padding:80px 0 72px}
-.hero .photo{position:absolute;right:0;top:0;bottom:0;width:58%;background:radial-gradient(ellipse 42% 50% at 55% 42%,#56565a 0%,#28282b 45%,var(--ink-000) 80%)}
-.hero .photo::after{content:"B&W PORTRAIT — 3/4 ANGLE";position:absolute;left:55%;top:42%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
-.hero .fade{position:absolute;inset:0;background:linear-gradient(90deg,var(--ink-000) 30%,transparent 75%),linear-gradient(0deg,var(--ink-000) 0%,transparent 40%)}
+.hero .photo{position:absolute;right:0;top:0;bottom:0;width:48%;background:#0b0b0c url(img/josh-hero.jpg) center 18%/cover no-repeat}
+.hero .fade{position:absolute;inset:0;background:linear-gradient(90deg,var(--ink-000) 42%,rgba(11,11,12,.55) 56%,transparent 72%),linear-gradient(0deg,var(--ink-000) 0%,transparent 30%)}
 .hero .wrap{position:relative;width:100%}
-.hero h1{font-size:clamp(64px,10vw,148px);line-height:.9;max-width:900px;margin:22px 0 28px}
+.hero h1{font-size:clamp(64px,8.6vw,132px);line-height:.9;max-width:720px;margin:22px 0 28px}
 .hero p.lead{font-size:clamp(18px,1.6vw,22px);max-width:560px;color:var(--body);margin:0 0 36px}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px}
 .proof{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:56px;padding-top:24px;border-top:2px solid var(--rule);max-width:820px}
 .proof div{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .proof b{color:var(--paper);font-weight:500}
 
-section{padding:120px 0}
+section{padding:120px 0;scroll-margin-top:72px}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
 .sec-head h2{font-size:clamp(44px,6vw,84px);line-height:.92;margin-top:16px;max-width:760px}
 .sec-head p{max-width:420px;margin:0}
@@ -118,6 +117,26 @@ form .btn{width:100%;justify-content:center;margin-top:26px}
 .final .btn{background:var(--ink-000);color:var(--paper);border-color:var(--ink-000)}
 .final .btn.ghost{background:transparent;color:var(--ink-000);border-color:var(--ink-000)}
 
+.final .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.final form{background:var(--ink-000);border-top:6px solid var(--ink-000)}
+.final form h3{color:var(--paper)}
+.final form .sub{color:var(--muted);font-size:15px;margin:0 0 24px}
+.final form .fine{color:var(--muted);font-size:12px;margin:14px 0 0}
+.final form .btn{background:var(--ember);color:var(--ink-000);border-color:var(--ember)}
+.check{display:flex;align-items:center;gap:12px;margin:22px 0 4px;font-size:16px;color:var(--paper);font-family:var(--sans);letter-spacing:0;text-transform:none;cursor:pointer}
+.check input{width:22px;height:22px;accent-color:var(--ember);margin:0}
+.calbar{background:var(--surface-100);border-top:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+.calbar a{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:40px 0;text-decoration:none;flex-wrap:wrap}
+.calbar .t{font-family:var(--display);text-transform:uppercase;color:var(--paper);font-size:clamp(36px,5vw,64px);line-height:1}
+.calbar .t em{font-style:normal;color:var(--ember)}
+.calbar .s{font-size:16px;color:var(--body);margin-top:8px}
+.calbar:hover .t em{color:var(--ember-soft)}
+.comm-note{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);margin-top:48px}
+.comm-note div{background:var(--ink-000);padding:28px 28px 28px 0}
+.comm-note div+div{padding-left:28px}
+.comm-note b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;color:var(--paper);font-size:32px;line-height:1;margin-bottom:8px}
+.comm-note b em{font-style:normal;color:var(--ember)}
+.comm-note p{margin:0;font-size:16px}
 footer{padding:72px 0 40px;font-size:14px}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:2px solid var(--rule)}
 footer h4{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted);font-weight:500;margin:0 0 16px;text-transform:uppercase}
@@ -130,12 +149,15 @@ footer a:hover{color:var(--paper)}
 @media (max-width:960px){
   .links{display:none}.menu{display:block}
   .links.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;background:var(--ink-000);padding:24px var(--pad) 32px;border-bottom:1px solid var(--line)}
-  .hero .photo{width:100%;opacity:.7}
-  .hero .fade{background:linear-gradient(0deg,var(--ink-000) 35%,transparent 85%)}
+  .hero{flex-direction:column;align-items:stretch;padding:0 0 64px;min-height:0}
+  .hero .photo{position:relative;width:100%;height:68vh;max-height:620px;background-position:center 15%}
+  .hero .fade{inset:auto 0 auto 0;top:calc(min(68vh,620px) - 200px);height:200px;background:linear-gradient(0deg,var(--ink-000) 0%,transparent 100%)}
+  .hero .wrap{margin-top:-40px}
   .doors,.posts{grid-template-columns:minmax(0,1fr)}
   .door h3{font-size:52px}
   .door{min-height:300px}
-  .why-grid,.renew-grid{grid-template-columns:1fr;gap:48px}
+  .why-grid,.renew-grid,.final .grid,.comm-note{grid-template-columns:1fr;gap:48px}
+  .comm-note{gap:2px}.comm-note div,.comm-note div+div{padding:24px 0}
   .foot-grid{grid-template-columns:1fr 1fr}
   section{padding:88px 0}
 }
@@ -159,7 +181,7 @@ footer a:hover{color:var(--paper)}
       <a href="#doors">Mortgages</a>
       <a href="#intel">Market Intel</a>
       <a href="#why">About</a>
-      <a class="btn" href="#book">Book a call</a>
+      <a class="btn" href="https://calendar.app.google/hSqdfvUbV34R4PtY6" target="_blank" rel="noopener">Book a call</a>
     </nav>
   </div>
 </header>
@@ -167,14 +189,14 @@ footer a:hover{color:var(--paper)}
 <main id="top">
   <!-- HERO -->
   <section class="hero" aria-label="Introduction">
-    <div class="photo" role="img" aria-label="Portrait of Josh Gleason (placeholder)"></div>
+    <div class="photo" role="img" aria-label="Portrait of Josh Gleason"></div>
     <div class="fade"></div>
     <div class="wrap">
       <div class="kicker">Simcoe County · Real Estate + Mortgages</div>
       <h1>One guy.<br><em>Both sides</em><br>of the deal.</h1>
       <p class="lead">I'm a Sales Representative <em style="font-style:normal;color:var(--paper)">and</em> a licensed Mortgage Agent — so the home you buy and the money behind it get planned together, not handed off between strangers.</p>
       <div class="cta-row">
-        <a class="btn" href="#book">Book a 15-min call →</a>
+        <a class="btn" href="https://calendar.app.google/hSqdfvUbV34R4PtY6" target="_blank" rel="noopener">Book a 15-min call →</a>
         <a class="btn ghost" href="#renewal">Renewing soon?</a>
       </div>
       <div class="proof">
@@ -196,13 +218,13 @@ footer a:hover{color:var(--paper)}
         <p>Every move starts with a number. I'll get you the right one before you fall in love with a house — or sign a renewal.</p>
       </div>
       <div class="doors">
-        <a class="door" href="#book">
+        <a class="door" href="#numbers" data-service="Get Pre-Approved">
           <span class="num">01 / BUY</span>
           <h3>Buy</h3>
           <p>First home or moving the family up. Pre-approval, the right neighbourhood, and an offer strategy that doesn't leave money on the table.</p>
           <span class="go">Start with what you can afford →</span>
         </a>
-        <a class="door" href="#book">
+        <a class="door" href="#numbers" data-service="Home Selling Strategy">
           <span class="num">02 / SELL</span>
           <h3>Sell</h3>
           <p>Know your number, time the market, and line up your next mortgage before your sign goes up — so you're never stuck between two homes.</p>
@@ -293,20 +315,54 @@ footer a:hover{color:var(--paper)}
     <div class="wrap">
       <div class="kicker" style="margin-bottom:24px">Communities I cover</div>
       <div class="comm-list">
-        <a href="#">Barrie</a><a href="#">Oro-Medonte</a><a href="#">Horseshoe Valley</a><a href="#">Orillia</a><a href="#">Innisfil</a><a href="#">Springwater</a><a href="#">Collingwood</a><a href="#">Muskoka</a><a href="#">Grey County</a>
+        <a href="#">Barrie</a><a href="#">Oro-Medonte</a><a href="#">Horseshoe Valley</a><a href="#">Orillia</a><a href="#">Innisfil</a><a href="#">Springwater</a><a href="#">Collingwood</a><a href="#">Muskoka</a><a href="#">Grey County</a><a href="#">GTA</a>
+      </div>
+      <div class="comm-note">
+        <div><b>Real estate · <em>Ontario</em></b><p>Buying and selling across Simcoe County, Muskoka, Grey County and the GTA.</p></div>
+        <div><b>Mortgages · <em>Nationwide</em></b><p>Purchases, renewals, refinances and pre-approvals for clients anywhere in Canada — done by phone and video.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="final" id="book">
-    <div class="wrap">
-      <h2>Let's run<br>your numbers.</h2>
-      <p>15 minutes. You'll leave knowing what you can afford, what your home is worth, or what your renewal should actually cost.</p>
-      <div class="cta-row">
-        <a class="btn" href="#book">Book a call →</a>
-        <a class="btn ghost" href="tel:7057152402">Call 705-715-2402</a>
+  <!-- FINAL CTA / RUN YOUR NUMBERS FORM -->
+  <section class="final" id="numbers">
+    <div class="wrap grid">
+      <div>
+        <h2>Let's run<br>your numbers.</h2>
+        <p>Tell me where you're at. You'll leave knowing what you can afford, what your home is worth, or the smartest way to structure your mortgage.</p>
       </div>
+      <form id="numbersForm" name="run-your-numbers" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company">
+        <input type="hidden" name="form-name" value="run-your-numbers">
+        <p hidden><label>Leave blank <input name="company"></label></p>
+        <h3>Start here</h3>
+        <p class="sub">I'll reply within one business day.</p>
+        <div class="two">
+          <div><label for="n-fn">First name</label><input id="n-fn" name="first_name" required autocomplete="given-name"></div>
+          <div><label for="n-ln">Last name</label><input id="n-ln" name="last_name" required autocomplete="family-name"></div>
+        </div>
+        <label for="n-em">Email</label><input id="n-em" type="email" name="email" required autocomplete="email">
+        <label for="n-ph">Phone number</label><input id="n-ph" type="tel" name="phone" required autocomplete="tel">
+        <label for="n-sv">What can I help with?</label>
+        <select id="n-sv" name="service" required>
+          <option value="" disabled selected>Choose one</option>
+          <option>Mortgage Strategy Session</option>
+          <option>Home Selling Strategy</option>
+          <option>Get Pre-Approved</option>
+        </select>
+        <label class="check"><input type="checkbox" id="n-ftb" name="first_time_home_buyer" value="Yes"> First-time home buyer</label>
+        <button class="btn" type="submit">Run my numbers →</button>
+        <p class="fine">By submitting, you agree to be contacted by Josh Gleason about real estate and mortgage services. You can opt out anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- BOOK A CALL BANNER -->
+  <section class="calbar" style="padding:0">
+    <div class="wrap">
+      <a href="https://calendar.app.google/hSqdfvUbV34R4PtY6" target="_blank" rel="noopener">
+        <div><div class="t">Rather just talk? <em>Book a call.</em></div><div class="s">Pick a time that works for you — 15 minutes, no obligation.</div></div>
+        <span class="btn">Open my calendar →</span>
+      </a>
     </div>
   </section>
 </main>
@@ -319,9 +375,9 @@ footer a:hover{color:var(--paper)}
         <p style="margin:14px 0 0;max-width:300px">Real estate and mortgages for Simcoe County, Muskoka and Grey — planned together.</p>
         <p style="margin:14px 0 0">705-715-2402<br>josh@themortgageexperts.ca</p>
       </div>
-      <div><h4>Real estate</h4><ul><li><a href="#doors">Buy</a></li><li><a href="#doors">First-time buyers</a></li><li><a href="#doors">Sell</a></li><li><a href="#doors">Home value</a></li></ul></div>
-      <div><h4>Mortgages</h4><ul><li><a href="#doors">Pre-approval</a></li><li><a href="#renewal">Renewals</a></li><li><a href="#doors">Refinance</a></li><li><a href="#doors">Strategies</a></li></ul></div>
-      <div><h4>More</h4><ul><li><a href="#intel">Market Intel</a></li><li><a href="#why">About</a></li><li><a href="#book">Book a call</a></li><li><a href="#">Privacy</a></li></ul></div>
+      <div><h4>Real estate</h4><ul><li><a href="#numbers" data-service="Get Pre-Approved">Buy</a></li><li><a href="#numbers" data-service="Get Pre-Approved" data-ftb="1">First-time buyers</a></li><li><a href="#numbers" data-service="Home Selling Strategy">Sell</a></li><li><a href="#numbers" data-service="Home Selling Strategy">Home values</a></li></ul></div>
+      <div><h4>Mortgages</h4><ul><li><a href="#numbers" data-service="Get Pre-Approved">Pre-approvals</a></li><li><a href="#numbers" data-service="Mortgage Strategy Session">Renewals</a></li><li><a href="#numbers" data-service="Mortgage Strategy Session">Refinance</a></li><li><a href="#numbers" data-service="Mortgage Strategy Session">Strategies</a></li></ul></div>
+      <div><h4>More</h4><ul><li><a href="#intel">Market Intel</a></li><li><a href="#why">About</a></li><li><a href="https://calendar.app.google/hSqdfvUbV34R4PtY6" target="_blank" rel="noopener">Book a call</a></li><li><a href="#">Privacy</a></li></ul></div>
     </div>
     <div class="legal">
       Josh Gleason, Sales Representative — Sutton Group Incentive Realty Inc., Brokerage. Independently owned and operated.<br>
@@ -334,6 +390,10 @@ footer a:hover{color:var(--paper)}
 <script>
   const btn=document.getElementById('menuBtn'),links=document.getElementById('links');
   btn.addEventListener('click',()=>{const o=links.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+  document.querySelectorAll('a[data-service]').forEach(a=>a.addEventListener('click',()=>{
+    const sel=document.getElementById('n-sv');sel.value=a.dataset.service;
+    if(a.dataset.ftb)document.getElementById('n-ftb').checked=true;
+  }));
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
 </script>
 </body>
