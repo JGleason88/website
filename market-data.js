@@ -44,7 +44,9 @@ window.MARKET_DATA = {
       source: "TRREB Simcoe County Market Watch, October 2026" },
     { id: "orillia", name: "Orillia", group: "Simcoe County", lat: 44.608, lng: -79.420, status: "live",
       sales: 54, avg: 568124, median: 543500, benchmark: 506100, benchmarkChg: -5.1, dom: 40, spLp: 96,
-      types: null,
+      /* -1 = exact price, sales count not reported */
+      types: { detached: [-1, 645633], semi: null, town: [-1, 615261], condoTown: [-1, 486325], condoApt: [-1, 587070] },
+      typesNote: "Home-type prices from MLS® data, October 2026. Sales counts by type not shown.",
       source: "TRREB Simcoe County Market Watch, October 2026" },
     { id: "collingwood", name: "Collingwood", group: "Simcoe County", lat: 44.500, lng: -80.217, status: "pending",
       source: "TRREB Simcoe County Market Watch" },

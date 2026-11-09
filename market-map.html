@@ -228,6 +228,7 @@ footer{padding:40px 0 48px}
       h += '<ul class="types">';
       TYPES.forEach(function(t){
         var v = r.types[t[0]];
+        if (v && v[0] === -1) { h += '<li><span class="t">' + t[1] + '</span><span class="p">' + money(v[1]) + '</span></li>'; return; }
         if (v && v[0] === null) { h += '<li><span class="t">' + t[1] + '</span><span class="p">~' + money(v[1]) + '</span><span class="n">Approximate</span></li>'; return; }
         if (!v || !v[0]) { h += '<li class="none"><span class="t">' + t[1] + '</span><span class="p">' + (r.typesNote ? 'Not available' : 'No sales') + '</span></li>'; return; }
         var thin = v[0] < MIN;
@@ -252,6 +253,7 @@ footer{padding:40px 0 48px}
     }
     var cells = TYPES.map(function(t){
       var v = r.types[t[0]];
+      if (v && v[0] === -1) return '<td>' + short(v[1]) + '</td>';
       if (v && v[0] === null) return '<td>~' + short(v[1]) + '</td>';
       if (!v || !v[0]) return '<td class="mut">—</td>';
       return '<td class="' + (v[0] < MIN ? "mut" : "") + '">' + short(v[1]) + '</td>';
