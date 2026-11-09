@@ -62,6 +62,26 @@
 .out dd{margin:0;font-weight:700;color:var(--paper);font-size:17px;white-space:nowrap}
 .warn{background:#2a1110;border-left:6px solid var(--ember);color:var(--paper);font-size:15px;padding:12px 16px;margin:0 0 14px}
 @media (max-width:860px){.calc{grid-template-columns:1fr}}
+.calc.rf .inputs .step{font-size:24px;margin:6px 0 16px;color:var(--paper)}
+.calc.rf .inputs .step:not(:first-child){margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.debt{display:grid;grid-template-columns:1.3fr 1fr .7fr .9fr 44px;gap:10px;align-items:end;margin-bottom:12px}
+.debt label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.debt input{width:100%;background:var(--ink-000);border:2px solid var(--line);color:var(--paper);font:600 17px var(--sans);padding:11px 10px;outline:none;min-width:0}
+.debt input:focus{border-color:var(--ember)}
+.debt .rm{width:44px;height:48px;background:transparent;border:2px solid var(--line);color:var(--muted);font-size:22px;cursor:pointer}
+.debt .rm:hover{border-color:var(--ember);color:var(--paper)}
+.btn.add{padding:11px 18px;font-size:15px;margin-top:4px}
+.sub2{font-size:15px;color:var(--body);margin:-8px 0 18px}
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;background:var(--ink-000);padding:18px 20px;margin:0 0 14px}
+.cmp .l{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cmp .n{font-family:var(--display);font-size:38px;line-height:1.1;color:var(--paper)}
+.cmp .n.red{color:var(--ember)}
+.cmp .s{font-size:13px;color:var(--muted)}
+.cmp .arr{font-size:30px;color:var(--ember)}
+.keep{background:var(--surface-100);border-left:6px solid var(--ember);padding:16px 18px;font-size:16px;color:var(--body);margin:0 0 22px}
+.keep b{color:var(--paper)}
+.pos{color:#8fd6a0 !important}
+@media (max-width:640px){.debt{grid-template-columns:1fr 1fr}.debt .rm{grid-column:2;justify-self:end}}
 @media (max-width:860px){.ind{grid-template-columns:1fr}}
 </style>
 </head>
@@ -180,11 +200,58 @@
       <p class="disclose">For illustration only. Assumes a fixed rate for the full amortization, compounded semi-annually, with mortgage insurance premiums of 0.60% to 4.00% (plus 0.20% on 30-year insured mortgages) added to the mortgage, and Ontario's 8% sales tax on the premium paid at closing. Insured 30-year amortizations are available to first-time buyers and buyers of new builds. The stress test uses the greater of 5.25% or your rate plus 2%. Excludes property tax, condo fees, heating and closing costs. Your actual payment depends on your lender, approval and final terms.</p>
     </section>
 
+    <!-- 3. Refinance / debt consolidation calculator -->
     <section class="sec" id="refinance">
-      <div class="soon">
-        <h3>Refinance calculator</h3>
-        Coming next: see your new payment, how much equity you can access and what breaking your mortgage could cost.
-      </div>
+      <div class="kicker">Refinance &amp; debt consolidation</div>
+      <h2>Roll it all into <em>one payment.</em></h2>
+      <p class="lede">Enter your mortgage and your other debts. See what one consolidated mortgage would cost each month, and what it does to the interest you pay.</p>
+      <form class="calc rf" id="rf" novalidate>
+        <div class="inputs">
+          <h3 class="step">1 · Your home and mortgage</h3>
+          <div class="f two">
+            <div><label for="rf-value">Home value</label><div class="money"><span>$</span><input id="rf-value" class="m" inputmode="numeric" value="800,000"></div></div>
+            <div><label for="rf-bal">Mortgage balance</label><div class="money"><span>$</span><input id="rf-bal" class="m" inputmode="numeric" value="420,000"></div></div>
+          </div>
+          <div class="f two">
+            <div><label for="rf-rate">Mortgage rate</label><div class="money pct"><input id="rf-rate" inputmode="decimal" value="5.39"><span>%</span></div></div>
+            <div><label for="rf-pay">Monthly payment</label><div class="money"><span>$</span><input id="rf-pay" class="m" inputmode="numeric" value="2,750"></div></div>
+          </div>
+
+          <h3 class="step">2 · Your other debts</h3>
+          <div class="debts" id="rf-debts"></div>
+          <button type="button" class="btn ghost add" id="rf-add">+ Add a debt</button>
+
+          <h3 class="step">3 · The new mortgage</h3>
+          <div class="f two">
+            <div><label for="rf-nrate">New rate</label><div class="money pct"><input id="rf-nrate" inputmode="decimal" value="4.49"><span>%</span></div><div class="hint">Example rate</div></div>
+            <div><label for="rf-namort">Amortization</label><select id="rf-namort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+          </div>
+          <div class="f two">
+            <div><label for="rf-pen">Prepayment penalty</label><div class="money"><span>$</span><input id="rf-pen" class="m" inputmode="numeric" value=""></div><div class="hint">Auto-estimated at 3 months' interest. Fixed-rate penalties can be much higher; ask your lender.</div></div>
+            <div><label for="rf-fees">Legal &amp; appraisal</label><div class="money"><span>$</span><input id="rf-fees" class="m" inputmode="numeric" value="1,500"></div><div class="hint">Estimate</div></div>
+          </div>
+        </div>
+
+        <div class="out" aria-live="polite">
+          <div class="big"><div class="l">Monthly cash flow savings</div><div class="v" id="rf-save">$0</div><div class="sub2" id="rf-save-yr"></div></div>
+          <div class="warn" id="rf-warn" hidden></div>
+          <div class="cmp">
+            <div><div class="l">Today</div><div class="n" id="rf-now">$0</div><div class="s">per month, all payments</div></div>
+            <div class="arr" aria-hidden="true">→</div>
+            <div><div class="l">Consolidated</div><div class="n red" id="rf-new">$0</div><div class="s">one mortgage payment</div></div>
+          </div>
+          <dl>
+            <div><dt>New mortgage amount</dt><dd id="rf-loan">$0</dd></div>
+            <div><dt>Loan-to-value <span class="sub">(max 80%)</span></dt><dd id="rf-ltv">0%</dd></div>
+            <div><dt>Debts paid off</dt><dd id="rf-debt-tot">$0</dd></div>
+            <div><dt>Interest over the next 5 years</dt><dd id="rf-i5">$0</dd></div>
+            <div><dt>Total interest, today's path vs new</dt><dd id="rf-life">$0</dd></div>
+          </dl>
+          <div class="keep" id="rf-keep"></div>
+          <a class="btn" href="/#numbers">Run my real numbers</a>
+        </div>
+      </form>
+      <p class="disclose">For illustration only. Today's path assumes you keep making your current payments until each debt is paid off; debts are compounded monthly and mortgages semi-annually. "Total interest" compares interest until everything is paid off on today's path against the full new amortization, so stretching debt over a longer period can cost more over time even when the monthly payment drops. Refinances are generally limited to 80% of your home's value and require qualifying, including the stress test. Prepayment penalties vary by lender and can be much higher than shown on fixed-rate mortgages. Excludes property tax and other housing costs. Contact Josh Gleason, Mortgage Agent Level 2 (M19002343), The Mortgage Experts (FSRA #13854), for real numbers.</p>
     </section>
   </div>
 </main>
@@ -338,6 +405,114 @@ if (RATES_CSV_URL){
   $('mc').addEventListener('input', calc);
   $('mc').addEventListener('change', calc);
   $('mc').addEventListener('submit', function(e){ e.preventDefault(); });
+  calc();
+})();
+
+/* ---------- Refinance / consolidation calculator ---------- */
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var val = function(el){ return parseFloat((el.value || '').replace(/[^0-9.]/g,'')) || 0; };
+  var money = function(v){ return (v < 0 ? '-$' : '$') + Math.round(Math.abs(v)).toLocaleString('en-CA'); };
+  var semi = function(rate){ return Math.pow(1 + rate / 200, 1 / 6) - 1; };   // monthly rate, semi-annual compounding
+  var mon = function(rate){ return rate / 1200; };                            // monthly rate, monthly compounding
+  var MAXM = 600;
+  // Simulate paying a balance with a fixed monthly payment. Returns months, total interest and 5-year interest.
+  function run(bal, i, pay){
+    var m = 0, tot = 0, five = 0;
+    while (bal > 0.005 && m < MAXM){
+      var it = bal * i; if (pay <= it) return {stuck:true, months:MAXM, total:Infinity, five: five + it * (60 - m)};
+      tot += it; if (m < 60) five += it;
+      bal = bal + it - pay; m++;
+    }
+    return {months:m, total:tot, five:five};
+  }
+  function amortPay(P, i, n){ return i === 0 ? P / n : P * i / (1 - Math.pow(1 + i, -n)); }
+
+  var list = $('rf-debts'), n = 0;
+  function addDebt(name, bal, rate, pay){
+    n++;
+    var row = document.createElement('div'); row.className = 'debt';
+    row.innerHTML =
+      '<div><label for="d' + n + 'n">Debt</label><input id="d' + n + 'n" class="dn"></div>' +
+      '<div><label for="d' + n + 'b">Balance $</label><input id="d' + n + 'b" class="db m" inputmode="numeric"></div>' +
+      '<div><label for="d' + n + 'r">Rate %</label><input id="d' + n + 'r" class="dr" inputmode="decimal"></div>' +
+      '<div><label for="d' + n + 'p">Monthly $</label><input id="d' + n + 'p" class="dp m" inputmode="numeric"></div>' +
+      '<button type="button" class="rm" aria-label="Remove this debt">×</button>';
+    row.querySelector('.dn').value = name; row.querySelector('.db').value = bal;
+    row.querySelector('.dr').value = rate; row.querySelector('.dp').value = pay;
+    row.querySelector('.rm').addEventListener('click', function(){ row.remove(); calc(); });
+    list.appendChild(row);
+  }
+  addDebt('Credit card', '18,000', '20.99', '540');
+  addDebt('Car loan', '32,000', '8.49', '650');
+  addDebt('Line of credit', '25,000', '9.95', '500');
+  $('rf-add').addEventListener('click', function(){ addDebt('', '', '', ''); list.lastChild.querySelector('.dn').focus(); calc(); });
+
+  var penEdited = false;
+  $('rf-pen').addEventListener('input', function(){ penEdited = $('rf-pen').value !== ''; });
+
+  function calc(){
+    var value = val($('rf-value')), bal = val($('rf-bal')), rate = val($('rf-rate')), mpay = val($('rf-pay'));
+    var nrate = val($('rf-nrate')), years = +$('rf-namort').value, fees = val($('rf-fees'));
+    if (!penEdited) $('rf-pen').value = bal && rate ? Math.round(bal * rate / 100 / 4).toLocaleString('en-CA') : '';
+    var pen = val($('rf-pen'));
+    var warn = [];
+
+    var nowPay = mpay, debtTot = 0, cur = {five:0, total:0, months:0}, stuck = false;
+    var m = run(bal, semi(rate), mpay);
+    if (m.stuck) { stuck = true; warn.push('Your mortgage payment doesn\'t cover its interest. Check the numbers.'); }
+    cur.five += m.five; cur.total += m.total; cur.months = Math.max(cur.months, m.months);
+    Array.prototype.forEach.call(list.querySelectorAll('.debt'), function(r){
+      var b = val(r.querySelector('.db')), rr = val(r.querySelector('.dr')), p = val(r.querySelector('.dp'));
+      if (!b) return;
+      debtTot += b; nowPay += p;
+      var d = run(b, mon(rr), p);
+      if (d.stuck){ stuck = true; var nm = r.querySelector('.dn').value || 'One debt'; warn.push(nm + ': the payment doesn\'t cover the interest, so it never gets paid off.'); }
+      cur.five += d.five; cur.total += d.total; cur.months = Math.max(cur.months, d.months);
+    });
+
+    var loan = bal + debtTot + pen + fees;
+    var ltv = value ? loan / value : 0;
+    if (ltv > 0.80) warn.push('That\'s ' + (ltv * 100).toFixed(1) + '% of your home\'s value. Refinances are capped at 80% (' + money(value * 0.8) + '), so you may not be able to roll in everything.');
+    var ni = semi(nrate), N = years * 12;
+    var newPay = amortPay(loan, ni, N);
+    var nw = run(loan, ni, newPay);
+
+    var save = nowPay - newPay;
+    $('rf-save').textContent = money(save);
+    $('rf-save').classList.toggle('pos', save > 0);
+    $('rf-save-yr').textContent = save > 0 ? money(save * 12) + ' a year back in your pocket' : 'No monthly savings with these numbers';
+    $('rf-now').textContent = money(nowPay);
+    $('rf-new').textContent = money(newPay);
+    $('rf-loan').textContent = money(loan);
+    $('rf-ltv').textContent = (ltv * 100).toFixed(1) + '%';
+    $('rf-debt-tot').textContent = money(debtTot);
+    var d5 = cur.five - nw.five;
+    $('rf-i5').innerHTML = money(cur.five) + ' → ' + money(nw.five) + (d5 > 0 ? ' <span class="pos">(save ' + money(d5) + ')</span>' : '');
+    if (stuck) { $('rf-life').textContent = 'Today\'s path never pays off'; }
+    else {
+      var dl = cur.total - nw.total;
+      $('rf-life').innerHTML = money(cur.total) + ' → ' + money(nw.total) + (dl > 0 ? ' <span class="pos">(save ' + money(dl) + ')</span>' : ' <span>(' + money(-dl) + ' more)</span>');
+    }
+    // Best case: put today's total payment toward the new mortgage
+    var k = $('rf-keep');
+    if (save > 0 && nowPay > 0){
+      var fast = run(loan, ni, nowPay);
+      var yrs = (N - fast.months) / 12;
+      var base = stuck ? null : cur.total - fast.total;
+      k.innerHTML = '<b>Keep paying ' + money(nowPay) + ' a month</b> into the new mortgage and it\'s paid off in <b>' + (fast.months / 12).toFixed(1) + ' years</b>, ' + yrs.toFixed(1) + ' years sooner' + (base !== null && base > 0 ? ', saving <b>' + money(base) + '</b> in interest compared with today' : '') + '.';
+      k.hidden = false;
+    } else { k.hidden = true; }
+
+    var w = $('rf-warn');
+    if (warn.length){ w.textContent = warn.join(' '); w.hidden = false; } else { w.hidden = true; }
+  }
+  $('rf').addEventListener('input', function(e){
+    if (e.target.classList.contains('m')){ var v = e.target.value.replace(/[^0-9]/g,''); e.target.value = v ? (+v).toLocaleString('en-CA') : ''; }
+    calc();
+  });
+  $('rf').addEventListener('change', calc);
+  $('rf').addEventListener('submit', function(e){ e.preventDefault(); });
   calc();
 })();
 </script>
