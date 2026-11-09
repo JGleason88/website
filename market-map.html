@@ -214,7 +214,17 @@ footer{padding:40px 0 48px}
       h += '<p class="pending-note">' + esc(D.month) + ' numbers for ' + esc(r.name) + ' are on the way. Want them now? I can pull the latest sales for you.</p>';
     } else {
       h += '<div class="big"><div><div class="l">Avg. sold price</div><div class="v red">' + money(r.avg) + '</div></div>' +
-           '<div><div class="l">Avg. days on market</div><div class="v">' + r.dom + ' days</div></div></div>';
+           '<div><div class="l">Avg. days on market</div><div class="v">' + r.dom + ' days</div></div>' +
+           (r.median ? '<div><div class="l">Median price</div><div class="v">' + money(r.median) + '</div></div>' : '') +
+           (r.benchmark ? '<div><div class="l">Benchmark price</div><div class="v">' + short(r.benchmark) + ' <span style="font-size:.6em;color:var(--ember-soft)">' + r.benchmarkChg + '%</span></div></div>' : '') +
+           '</div>';
+      if (!r.types) {
+        h += '<p class="pending-note">Breakdown by home type for ' + esc(r.name) + ' is coming soon.' + (r.spLp ? ' Homes sold for ' + r.spLp + '% of asking on average.' : '') + '</p>';
+        h += '<div class="src">' + r.sales.toLocaleString("en-CA") + ' total sales · Source: ' + esc(r.source) + '</div>';
+        h += '<a class="btn" href="/#numbers">Get my numbers for ' + esc(r.name) + ' →</a>';
+        document.getElementById("panel").innerHTML = h;
+        return;
+      }
       h += '<ul class="types">';
       TYPES.forEach(function(t){
         var v = r.types[t[0]];
@@ -235,6 +245,10 @@ footer{padding:40px 0 48px}
       rows += '<tr data-id="' + r.id + '"><td>' + esc(r.name) + '</td><td class="mut" colspan="7" style="text-align:left">Coming soon</td></tr>';
       return;
     }
+    if (!r.types) {
+      rows += '<tr data-id="' + r.id + '" tabindex="0"><td>' + esc(r.name) + '</td><td>' + short(r.avg) + '</td><td class="mut" colspan="5" style="text-align:left">Home-type breakdown coming soon</td><td>' + r.dom + '</td></tr>';
+      return;
+    }
     var cells = TYPES.map(function(t){
       var v = r.types[t[0]];
       if (!v || !v[0]) return '<td class="mut">—</td>';
@@ -253,7 +267,7 @@ footer{padding:40px 0 48px}
     if (e.key === "Enter") { var tr = e.target.closest("tr"); if (tr) select(tr.getAttribute("data-id"), true); }
   });
 
-  select("toronto", false);
+  select("barrie", false);
 })();
 </script>
 </body>
