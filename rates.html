@@ -35,6 +35,33 @@
 .soon{background:var(--surface-100);border:2px dashed var(--line);padding:30px 28px;color:var(--muted)}
 .soon h3{font-size:30px;margin:0 0 8px}
 .disclose{font-size:13px;line-height:1.65;color:var(--muted);margin:22px 0 0;max-width:980px}
+.calc{display:grid;grid-template-columns:1.1fr 1fr;gap:2px;background:var(--line);border:2px solid var(--line)}
+.calc .inputs,.calc .out{background:var(--surface-100);padding:30px 30px}
+.calc .out{background:var(--surface-200)}
+.f{margin-bottom:22px}
+.f label,.f .two label{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.f.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.money{display:flex;align-items:center;background:var(--ink-000);border:2px solid var(--line)}
+.money:focus-within{border-color:var(--ember)}
+.money span{padding:0 0 0 16px;color:var(--muted);font-size:20px}
+.money.pct span{padding:0 16px 0 0}
+.money input,.f select{width:100%;background:var(--ink-000);border:0;color:var(--paper);font:600 22px var(--sans);padding:14px 16px;outline:none}
+.f select{border:2px solid var(--line);font-size:17px;padding:15px 12px}
+.f select:focus{border-color:var(--ember)}
+.hint{font-size:14px;color:var(--muted);margin-top:6px}
+.hint a{color:var(--body)}
+.checks{display:flex;flex-wrap:wrap;gap:12px 28px}
+.checks label{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--paper);cursor:pointer;min-height:44px}
+.checks input{width:22px;height:22px;accent-color:var(--ember)}
+.out .big .l{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.out .big .v{font-family:var(--display);font-size:clamp(56px,6vw,84px);line-height:1;color:var(--ember);margin:8px 0 18px}
+.out dl{margin:0 0 24px}
+.out dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+.out dt{font-size:15px;color:var(--body)}
+.out dt .sub{color:var(--muted);font-size:13px}
+.out dd{margin:0;font-weight:700;color:var(--paper);font-size:17px;white-space:nowrap}
+.warn{background:#2a1110;border-left:6px solid var(--ember);color:var(--paper);font-size:15px;padding:12px 16px;margin:0 0 14px}
+@media (max-width:860px){.calc{grid-template-columns:1fr}}
 @media (max-width:860px){.ind{grid-template-columns:1fr}}
 </style>
 </head>
@@ -117,10 +144,46 @@
       <p class="disclose">Rates shown are the best available rates offered through The Mortgage Experts (FSRA Lic. #13854) as of the date posted, and are subject to change without notice. Rates are offered on approved credit (OAC) and depend on property type, down payment or equity, amortization, credit history, income verification and lender criteria. Insured rates require mortgage default insurance. Not all borrowers will qualify for the rates shown. Rates are for information only and are not a commitment to lend. Contact Josh Gleason, Mortgage Agent Level 2 (M19002343), for a personalized quote.</p>
     </section>
 
-    <section class="sec" id="calculators">
+    <!-- 2. Mortgage calculator -->
+    <section class="sec" id="calculator">
+      <div class="kicker">Mortgage calculator</div>
+      <h2>What would my <em>payment be?</em></h2>
+      <p class="lede">Canadian math: semi-annual compounding, mortgage insurance and the stress test built in.</p>
+      <form class="calc" id="mc" novalidate>
+        <div class="inputs">
+          <div class="f"><label for="mc-price">Purchase price</label><div class="money"><span>$</span><input id="mc-price" inputmode="numeric" value="750,000"></div></div>
+          <div class="f"><label for="mc-down">Down payment</label><div class="money"><span>$</span><input id="mc-down" inputmode="numeric" value="75,000"></div><div class="hint" id="mc-down-pct"></div></div>
+          <div class="f"><label for="mc-rate">Interest rate</label><div class="money pct"><input id="mc-rate" inputmode="decimal" value="4.49"><span>%</span></div><div class="hint">Example rate. <a href="#rates">See this week's rates</a></div></div>
+          <div class="f two">
+            <div><label for="mc-amort">Amortization</label><select id="mc-amort"><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+            <div><label for="mc-freq">Payments</label><select id="mc-freq"><option value="m" selected>Monthly</option><option value="bw">Bi-weekly</option><option value="abw">Accelerated bi-weekly</option><option value="w">Weekly</option><option value="aw">Accelerated weekly</option></select></div>
+          </div>
+          <div class="checks">
+            <label><input type="checkbox" id="mc-ftb"> First-time buyer</label>
+            <label><input type="checkbox" id="mc-new"> New build</label>
+          </div>
+        </div>
+        <div class="out" aria-live="polite">
+          <div class="big"><div class="l" id="mc-pay-l">Monthly payment</div><div class="v" id="mc-pay">$0</div></div>
+          <div class="warn" id="mc-warn" hidden></div>
+          <dl>
+            <div><dt>Mortgage amount</dt><dd id="mc-loan">$0</dd></div>
+            <div><dt>Mortgage insurance</dt><dd id="mc-ins">$0</dd></div>
+            <div><dt>Ontario tax on insurance <span class="sub">(paid at closing)</span></dt><dd id="mc-pst">$0</dd></div>
+            <div><dt>Balance after a 5-year term</dt><dd id="mc-bal">$0</dd></div>
+            <div><dt>Interest paid in 5 years</dt><dd id="mc-int5">$0</dd></div>
+            <div><dt>Stress test payment <span class="sub" id="mc-qr"></span></dt><dd id="mc-stress">$0</dd></div>
+          </dl>
+          <a class="btn" href="/#numbers">Get pre-approved</a>
+        </div>
+      </form>
+      <p class="disclose">For illustration only. Assumes a fixed rate for the full amortization, compounded semi-annually, with mortgage insurance premiums of 0.60% to 4.00% (plus 0.20% on 30-year insured mortgages) added to the mortgage, and Ontario's 8% sales tax on the premium paid at closing. Insured 30-year amortizations are available to first-time buyers and buyers of new builds. The stress test uses the greater of 5.25% or your rate plus 2%. Excludes property tax, condo fees, heating and closing costs. Your actual payment depends on your lender, approval and final terms.</p>
+    </section>
+
+    <section class="sec" id="refinance">
       <div class="soon">
-        <h3>Mortgage &amp; refinance calculators</h3>
-        Coming next: work out your payment, mortgage insurance and the cost of refinancing.
+        <h3>Refinance calculator</h3>
+        Coming next: see your new payment, how much equity you can access and what breaking your mortgage could cost.
       </div>
     </section>
   </div>
@@ -203,6 +266,80 @@ if (RATES_CSV_URL){
     if (upd){ stamp.appendChild(document.createTextNode('Updated ')); var b = document.createElement('b'); b.textContent = upd; stamp.appendChild(b); }
   }).catch(function(){});
 }
+
+/* ---------- Mortgage calculator ---------- */
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(id){ return parseFloat(($(id).value || '').replace(/[^0-9.]/g,'')) || 0; };
+  var money = function(v){ return '$' + Math.round(v).toLocaleString('en-CA'); };
+  var money2 = function(v){ return '$' + v.toLocaleString('en-CA', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+  var FREQ = {m:{n:12,l:'Monthly payment'}, bw:{n:26,l:'Bi-weekly payment'}, abw:{n:26,l:'Accelerated bi-weekly payment',acc:2}, w:{n:52,l:'Weekly payment'}, aw:{n:52,l:'Accelerated weekly payment',acc:4}};
+  function minDown(price){
+    if (price >= 1500000) return price * 0.20;
+    if (price <= 500000) return price * 0.05;
+    return 25000 + (price - 500000) * 0.10;
+  }
+  function premiumRate(ltv){
+    if (ltv <= 0.80) return 0;
+    if (ltv <= 0.85) return 0.028;
+    if (ltv <= 0.90) return 0.031;
+    return 0.04;
+  }
+  function periodic(rate, n){ return Math.pow(1 + rate / 200, 2 / n) - 1; }
+  function payment(P, rate, n, years){
+    var i = periodic(rate, n), N = n * years;
+    return i === 0 ? P / N : P * i / (1 - Math.pow(1 + i, -N));
+  }
+  function balanceAfter(P, rate, n, pay, periods){
+    var i = periodic(rate, n), b = P, interest = 0;
+    for (var k = 0; k < periods && b > 0; k++){ var it = b * i; interest += it; b = b + it - pay; }
+    return {bal: Math.max(b, 0), interest: interest};
+  }
+  function calc(){
+    var price = num('mc-price'), down = num('mc-down'), rate = num('mc-rate');
+    var years = +$('mc-amort').value, f = FREQ[$('mc-freq').value];
+    var ftb = $('mc-ftb').checked, nb = $('mc-new').checked;
+    var warn = [];
+    $('mc-down-pct').textContent = price ? (down / price * 100).toFixed(1) + '% down · minimum ' + money(minDown(price)) : '';
+    var base = Math.max(price - down, 0), ltv = price ? base / price : 0;
+    var insured = ltv > 0.80;
+    var pr = 0;
+    if (down < minDown(price)) warn.push('Below the minimum down payment of ' + money(minDown(price)) + '.');
+    if (insured && price >= 1500000) warn.push('Homes $1.5M and up need at least 20% down.');
+    if (insured){
+      pr = premiumRate(ltv);
+      if (years === 30){
+        pr += 0.002;
+        if (!ftb && !nb) warn.push('Insured 30-year amortizations are for first-time buyers or new builds. Try 25 years or 20% down.');
+      }
+    }
+    var ins = base * pr, loan = base + ins, pst = ins * 0.08;
+    var monthly = payment(loan, rate, 12, years);
+    var pay = f.acc ? monthly / f.acc : payment(loan, rate, f.n, years);
+    var t = balanceAfter(loan, rate, f.n, pay, f.n * 5);
+    var qr = Math.max(5.25, rate + 2);
+    $('mc-pay-l').textContent = f.l;
+    $('mc-pay').textContent = rate > 0 && loan > 0 ? money2(pay) : '$0';
+    $('mc-loan').textContent = money(loan);
+    $('mc-ins').textContent = insured ? money(ins) + ' (' + (pr * 100).toFixed(2) + '%)' : 'None (20%+ down)';
+    $('mc-pst').textContent = money(pst);
+    $('mc-bal').textContent = money(t.bal);
+    $('mc-int5').textContent = money(t.interest);
+    $('mc-qr').textContent = '(monthly at ' + qr.toFixed(2) + '%)';
+    $('mc-stress').textContent = money2(payment(loan, qr, 12, years));
+    var w = $('mc-warn');
+    if (warn.length){ w.textContent = warn.join(' '); w.hidden = false; } else { w.hidden = true; }
+  }
+  function fmtInput(e){
+    var el = e.target, v = el.value.replace(/[^0-9]/g,'');
+    el.value = v ? (+v).toLocaleString('en-CA') : '';
+  }
+  ['mc-price','mc-down'].forEach(function(id){ $(id).addEventListener('input', fmtInput); });
+  $('mc').addEventListener('input', calc);
+  $('mc').addEventListener('change', calc);
+  $('mc').addEventListener('submit', function(e){ e.preventDefault(); });
+  calc();
+})();
 </script>
 </body>
 </html>
