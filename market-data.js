@@ -32,7 +32,9 @@ window.MARKET_DATA = {
       source: "TRREB Market Watch, October 2026" },
     { id: "barrie", name: "Barrie", group: "Simcoe County", lat: 44.389, lng: -79.690, status: "live",
       sales: 130, avg: 686941, median: 637500, benchmark: 617100, benchmarkChg: -5.1, dom: 40, spLp: 98,
-      types: null,
+      /* type prices: midpoint of recent ranges from listing sites — approximate, no sales counts */
+      types: { detached: [null, 730500], semi: [null, 610000], town: [null, 548500], condoTown: null, condoApt: [null, 473500] },
+      typesNote: "Home-type prices are approximate midpoints of recent sold-price ranges from public listing sites, not TRREB October figures.",
       source: "TRREB Simcoe County Market Watch, October 2026" },
     { id: "springwater", name: "Springwater", group: "Simcoe County", lat: 44.490, lng: -79.800, status: "pending",
       source: "TRREB Simcoe County Market Watch" },

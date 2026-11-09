@@ -149,7 +149,7 @@ footer{padding:40px 0 48px}
       </table>
     </div>
 
-    <p class="disc">Averages are for the month shown and can swing when only a few homes of a type sell; types with fewer than 5 sales are greyed out. Averages are not appraisals and say nothing about a specific home. Statistics based in whole or in part on MLS® System data owned by the Toronto Regional Real Estate Board (TRREB); not guaranteed accurate. Not a forecast or guarantee.</p>
+    <p class="disc">Averages are for the month shown and can swing when only a few homes of a type sell; types with fewer than 5 sales are greyed out. Prices marked ~ are approximate. Averages are not appraisals and say nothing about a specific home. Statistics based in whole or in part on MLS® System data owned by the Toronto Regional Real Estate Board (TRREB); not guaranteed accurate. Not a forecast or guarantee.</p>
   </section>
 
   <section class="cta" id="cta">
@@ -228,12 +228,13 @@ footer{padding:40px 0 48px}
       h += '<ul class="types">';
       TYPES.forEach(function(t){
         var v = r.types[t[0]];
-        if (!v || !v[0]) { h += '<li class="none"><span class="t">' + t[1] + '</span><span class="p">No sales</span></li>'; return; }
+        if (v && v[0] === null) { h += '<li><span class="t">' + t[1] + '</span><span class="p">~' + money(v[1]) + '</span><span class="n">Approximate</span></li>'; return; }
+        if (!v || !v[0]) { h += '<li class="none"><span class="t">' + t[1] + '</span><span class="p">' + (r.typesNote ? 'Not available' : 'No sales') + '</span></li>'; return; }
         var thin = v[0] < MIN;
         h += '<li class="' + (thin ? "thin" : "") + '"><span class="t">' + t[1] + '</span><span class="p">' + money(v[1]) + '</span>' +
              '<span class="n">' + v[0] + (v[0] === 1 ? " sale" : " sales") + (thin ? " · limited sales, read with caution" : "") + '</span></li>';
       });
-      h += '</ul><div class="src">' + r.sales.toLocaleString("en-CA") + ' total sales · Source: ' + esc(r.source) + '</div>';
+      h += '</ul><div class="src">' + r.sales.toLocaleString("en-CA") + ' total sales · Source: ' + esc(r.source) + (r.typesNote ? '<br>' + esc(r.typesNote) : '') + '</div>';
     }
     h += '<a class="btn" href="/#numbers">Get my numbers for ' + esc(r.name) + ' →</a>';
     document.getElementById("panel").innerHTML = h;
@@ -251,6 +252,7 @@ footer{padding:40px 0 48px}
     }
     var cells = TYPES.map(function(t){
       var v = r.types[t[0]];
+      if (v && v[0] === null) return '<td>~' + short(v[1]) + '</td>';
       if (!v || !v[0]) return '<td class="mut">—</td>';
       return '<td class="' + (v[0] < MIN ? "mut" : "") + '">' + short(v[1]) + '</td>';
     }).join("");
