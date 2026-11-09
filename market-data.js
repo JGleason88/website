@@ -3,7 +3,7 @@
    Each type: [sales, avgPrice] or null when no sales / not published.
    status: "live" = numbers below are published; "pending" = waiting on data. */
 window.MARKET_DATA = {
-  month: "October 2026",
+  month: "October 2026", /* default; a region can set its own month */
   minSales: 5, // types with fewer sales are shown as "limited sales"
   regions: [
     { id: "toronto", name: "City of Toronto", group: "GTA", lat: 43.700, lng: -79.400, status: "live",
@@ -35,19 +35,22 @@ window.MARKET_DATA = {
       /* type prices: midpoint of recent ranges from listing sites — approximate, no sales counts */
       types: { detached: [null, 730500], semi: [null, 610000], town: [null, 548500], condoTown: null, condoApt: [null, 473500] },
       typesNote: "Home-type prices are approximate midpoints of recent sold-price ranges from public listing sites, not TRREB October figures.",
-      source: "TRREB Simcoe County Market Watch, October 2026" },
+      month: "September 2026",
+      source: "TRREB Simcoe County Market Watch, September 2026" },
     { id: "springwater", name: "Springwater", group: "Simcoe County", lat: 44.490, lng: -79.800, status: "pending",
       source: "TRREB Simcoe County Market Watch" },
     { id: "oro-medonte", name: "Oro-Medonte", group: "Simcoe County", lat: 44.540, lng: -79.560, status: "live",
       sales: 20, avg: 894945, median: 860000, benchmark: 800800, benchmarkChg: -5.8, dom: 41, spLp: 97,
       types: null,
-      source: "TRREB Simcoe County Market Watch, October 2026" },
+      month: "September 2026",
+      source: "TRREB Simcoe County Market Watch, September 2026" },
     { id: "orillia", name: "Orillia", group: "Simcoe County", lat: 44.608, lng: -79.420, status: "live",
       sales: 54, avg: 568124, median: 543500, benchmark: 506100, benchmarkChg: -5.1, dom: 40, spLp: 96,
       /* -1 = exact price, sales count not reported */
       types: { detached: [-1, 645633], semi: null, town: [-1, 615261], condoTown: [-1, 486325], condoApt: [-1, 587070] },
-      typesNote: "Home-type prices from MLS® data, October 2026. Sales counts by type not shown.",
-      source: "TRREB Simcoe County Market Watch, October 2026" },
+      typesNote: "Home-type prices from MLS® data. Sales counts by type not shown.",
+      month: "September 2026",
+      source: "TRREB Simcoe County Market Watch, September 2026" },
     { id: "collingwood", name: "Collingwood", group: "Simcoe County", lat: 44.500, lng: -80.217, status: "pending",
       source: "TRREB Simcoe County Market Watch" },
     { id: "muskoka", name: "Muskoka", group: "Cottage Country", lat: 45.040, lng: -79.310, status: "pending",

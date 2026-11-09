@@ -115,7 +115,7 @@ footer{padding:40px 0 48px}
       <a href="/#doors">Buy</a>
       <a href="/#doors">Sell</a>
       <a href="/#renewal">Mortgages</a>
-      <a href="/#intel">Market Intel</a>
+      <a href="/intel/">Market Intel</a>
       <a href="/market-map.html" aria-current="page" style="color:var(--paper)">Market Map</a>
       <a class="btn" href="https://calendar.app.google/hSqdfvUbV34R4PtY6" target="_blank" rel="noopener">Book a call</a>
     </nav>
@@ -128,7 +128,7 @@ footer{padding:40px 0 48px}
       <div class="kicker">Simcoe Market Intel · Market map</div>
       <h1>What homes are <em>selling for</em> near you.</h1>
       <p>Average sold prices by home type and how long homes are taking to sell, region by region. Tap a marker to see the numbers.</p>
-      <div class="meta"><span>Data: <b id="month"></b></span><span>Updated monthly</span><span>Source: TRREB MLS® data</span></div>
+      <div class="meta"><span>Data: <b>latest month published for each region</b></span><span>Updated monthly</span><span>Source: TRREB MLS® data</span></div>
     </div>
   </section>
 
@@ -178,7 +178,6 @@ footer{padding:40px 0 48px}
   var money = function(n){ return "$" + Math.round(n).toLocaleString("en-CA"); };
   var short = function(n){ return n >= 1e6 ? "$" + (n/1e6).toFixed(2).replace(/0$/,"") + "M" : "$" + Math.round(n/1e3) + "K"; };
   var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
-  document.getElementById("month").textContent = D.month;
 
   var map = L.map("map", { scrollWheelZoom: false, zoomControl: true, attributionControl: true });
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -209,9 +208,10 @@ footer{padding:40px 0 48px}
     if (pan) map.panTo([r.lat, r.lng]);
     if (markers[id]) markers[id].setZIndexOffset(1000);
     Object.keys(markers).forEach(function(k){ if (k !== id) markers[k].setZIndexOffset(0); });
-    var h = '<div class="grp">' + esc(r.group) + ' · ' + esc(D.month) + '</div><h2>' + esc(r.name) + '</h2>';
+    var mo = r.month || D.month;
+    var h = '<div class="grp">' + esc(r.group) + ' · ' + esc(mo) + '</div><h2>' + esc(r.name) + '</h2>';
     if (r.status !== "live") {
-      h += '<p class="pending-note">' + esc(D.month) + ' numbers for ' + esc(r.name) + ' are on the way. Want them now? I can pull the latest sales for you.</p>';
+      h += '<p class="pending-note">' + esc(mo) + ' numbers for ' + esc(r.name) + ' are on the way. Want them now? I can pull the latest sales for you.</p>';
     } else {
       h += '<div class="big"><div><div class="l">Avg. sold price</div><div class="v red">' + money(r.avg) + '</div></div>' +
            '<div><div class="l">Avg. days on market</div><div class="v">' + r.dom + ' days</div></div>' +
