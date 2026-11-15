@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's My Home Worth? Free Home Value Estimate | Josh Gleason</title>
+<meta name="description" content="Get an instant ballpark value for your home in Barrie and Simcoe County, then a free, exact market evaluation from Josh Gleason within 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/article.css">
+<style>
+.page{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.hv{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:2px solid var(--line);margin-top:48px}
+.hv > div{background:var(--surface-100);padding:32px 32px;min-width:0}
+.hv .res{background:var(--surface-200)}
+.step{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);margin:0 0 10px}
+.hv h2{font-size:clamp(30px,3.4vw,42px);line-height:.95;margin:0 0 22px}
+.f{margin-bottom:18px}
+.f label{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.f.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f input,.f select,.f textarea{width:100%;box-sizing:border-box;background:var(--ink-000);border:2px solid var(--line);color:var(--paper);font:500 17px var(--sans);padding:14px 14px;outline:none;border-radius:0}
+.f textarea{min-height:90px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--ember)}
+.hint{font-size:13px;color:var(--muted);margin-top:6px}
+.go{width:100%;margin-top:6px;cursor:pointer;border:0;font:inherit}
+.empty{color:var(--muted);font-size:16px;line-height:1.6}
+.empty b{color:var(--paper)}
+.range .l{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.range .v{font-family:var(--display);font-size:clamp(46px,5.4vw,72px);line-height:1;color:var(--ember);margin:10px 0 10px}
+.range .basis{font-size:15px;line-height:1.55;color:var(--body);margin:0 0 6px}
+.range .warn{font-size:13px;line-height:1.55;color:var(--muted);margin:0}
+.exact{border-top:1px solid var(--line);margin-top:24px;padding-top:24px}
+.exact h3{font-size:30px;margin:0 0 6px}
+.exact p.sub{font-size:15px;color:var(--body);margin:0 0 18px}
+.disclose{font-size:13px;line-height:1.65;color:var(--muted);margin:22px 0 0;max-width:980px}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:2px solid var(--line);margin-top:56px}
+.why > div{background:var(--surface-100);padding:26px 26px}
+.why h3{font-size:24px;margin:0 0 8px}
+.why p{margin:0;font-size:15px;color:var(--body);line-height:1.55}
+@media (max-width:860px){.hv,.why{grid-template-columns:1fr}.f.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/">JOSH GLEASON<span>.</span></a>
+    <nav class="links">
+      <a href="/#doors">Buy</a>
+      <a href="/home-value.html">Sell</a>
+      <a href="/rates.html">Rates</a>
+      <a href="/intel/">Market Intel</a>
+      <a href="/market-map.html">Market Map</a>
+      <a class="btn" href="https://calendar.app.google/hSqdfvUbV34R4PtY6" target="_blank" rel="noopener">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">Home value</div>
+      <h1>What's your home <em>worth today?</em></h1>
+      <p class="dek">Get an instant ballpark from recent local sales. Then get your exact value: a free market evaluation, prepared by me, within 24 hours.</p>
+    </div>
+  </section>
+
+  <div class="page">
+    <div class="hv">
+      <!-- Step 1: details for the instant ballpark -->
+      <div>
+        <div class="step">Step 1 · Your home</div>
+        <h2>Tell me about <em>your home.</em></h2>
+        <form id="est" novalidate>
+          <div class="f"><label for="hv-address">Address</label><input id="hv-address" autocomplete="street-address" placeholder="123 Example St"></div>
+          <div class="f two">
+            <div><label for="hv-area">Area</label><select id="hv-area"></select></div>
+            <div><label for="hv-type">Home type</label>
+              <select id="hv-type">
+                <option value="detached">Detached</option>
+                <option value="semi">Semi-detached</option>
+                <option value="town">Townhouse (freehold)</option>
+                <option value="condoTown">Condo townhouse</option>
+                <option value="condoApt">Condo apartment</option>
+              </select></div>
+          </div>
+          <div class="f two">
+            <div><label for="hv-beds">Bedrooms</label>
+              <select id="hv-beds"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5+</option></select></div>
+            <div><label for="hv-cond">Condition</label>
+              <select id="hv-cond">
+                <option value="-0.08">Needs work</option>
+                <option value="0" selected>Average</option>
+                <option value="0.04">Updated</option>
+                <option value="0.08">Fully renovated</option>
+              </select></div>
+          </div>
+          <button class="btn go" type="submit">Show my ballpark →</button>
+        </form>
+      </div>
+
+      <!-- Step 2: ballpark result + exact value request -->
+      <div class="res" aria-live="polite">
+        <div class="step">Step 2 · Your ballpark</div>
+        <div id="hv-empty" class="empty">Fill in your home's details and press <b>Show my ballpark</b>. You'll see a value range right here, instantly.</div>
+        <div id="hv-range" class="range" hidden>
+          <div class="l" id="hv-range-l">Ballpark value</div>
+          <div class="v" id="hv-range-v">$0</div>
+          <p class="basis" id="hv-basis"></p>
+          <p class="warn">A ballpark from area averages. It can't see your street, lot, layout or upgrades, which is why your exact value can be quite different.</p>
+        </div>
+
+        <div class="exact" id="hv-exact" hidden>
+          <h3>Get your <em>exact value.</em></h3>
+          <p class="sub">I'll compare your home with recent sales on your street and in your neighbourhood, and send you a free market evaluation within 24 hours. No obligation.</p>
+          <form name="home-value" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company">
+            <input type="hidden" name="form-name" value="home-value">
+            <p hidden><label>Leave blank <input name="company"></label></p>
+            <input type="hidden" name="address" id="x-address">
+            <input type="hidden" name="area" id="x-area">
+            <input type="hidden" name="home-type" id="x-type">
+            <input type="hidden" name="bedrooms" id="x-beds">
+            <input type="hidden" name="condition" id="x-cond">
+            <input type="hidden" name="ballpark" id="x-ballpark">
+            <div class="f two">
+              <div><label for="hv-first">First name</label><input id="hv-first" name="first-name" autocomplete="given-name" required></div>
+              <div><label for="hv-last">Last name</label><input id="hv-last" name="last-name" autocomplete="family-name" required></div>
+            </div>
+            <div class="f two">
+              <div><label for="hv-email">Email</label><input id="hv-email" name="email" type="email" autocomplete="email" required></div>
+              <div><label for="hv-phone">Phone</label><input id="hv-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            </div>
+            <div class="f"><label for="hv-when">Thinking of selling?</label>
+              <select id="hv-when" name="timeline">
+                <option>Just curious</option>
+                <option>In the next 3 months</option>
+                <option>In 3 to 12 months</option>
+                <option>In a year or more</option>
+                <option>Thinking about refinancing instead</option>
+              </select></div>
+            <div class="f"><label for="hv-notes">Upgrades or anything I should know? (optional)</label><textarea id="hv-notes" name="notes" placeholder="New kitchen in 2023, finished basement, pool..."></textarea></div>
+            <button class="btn go" type="submit">Get my exact value →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclose">The ballpark is an automated estimate based on average sale prices for your area and home type, adjusted for bedrooms and condition. It is not an appraisal or a market evaluation, and should not be relied on for any decision. Your exact value comes from a comparative market analysis prepared by Josh Gleason, Sales Representative, Sutton Group Incentive Realty Inc., Brokerage. Not intended to solicit sellers currently under contract with a brokerage.</p>
+
+    <div class="why">
+      <div><h3>Local, not national</h3><p>Born and raised in Barrie. Your evaluation is built from real sales near you, not a national algorithm.</p></div>
+      <div><h3>Sell and finance</h3><p>As a realtor and a mortgage agent, I can show you what you'd net and what you can afford next, in one conversation.</p></div>
+      <div><h3>No pressure</h3><p>Curious, planning ahead or ready to list, you get the same honest numbers.</p></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap legal">
+    Josh Gleason, Sales Representative — Sutton Group Incentive Realty Inc., Brokerage. Independently owned and operated.<br>
+    Josh Gleason, Mortgage Agent Level 2 (FSRA Lic. M19002343) — DLC Yellow Brick Mortgages, FSRA Brokerage Lic. #13854, 18 Alliance Blvd., Unit 4, Barrie, ON L4M 5A5.<br>
+    Not intended to solicit buyers or sellers currently under contract. © 2026 Josh Gleason.
+  </div>
+</footer>
+
+<script src="/market-data.js"></script>
+<script>
+(function(){
+  var D = window.MARKET_DATA || {regions: []};
+  var $ = function(id){ return document.getElementById(id); };
+  var TYPE_NAMES = {detached:'detached homes', semi:'semi-detached homes', town:'freehold townhouses', condoTown:'condo townhouses', condoApt:'condo apartments'};
+  var TYPICAL_BEDS = {detached:3, semi:3, town:3, condoTown:3, condoApt:2};
+  var SPREAD = 0.08;          // +/- 8% around the point estimate
+  var PER_BED = 0.05;         // 5% per bedroom above or below typical
+  var MAX_BED_ADJ = 0.10;     // capped at 10% either way
+
+  // Area list: Simcoe-area regions first (the local market), then the rest
+  var area = $('hv-area');
+  var regions = D.regions.slice().sort(function(a, b){
+    var la = a.group === 'GTA' ? 1 : 0, lb = b.group === 'GTA' ? 1 : 0;
+    return la - lb || a.name.localeCompare(b.name);
+  });
+  regions.forEach(function(r){
+    var o = document.createElement('option');
+    o.value = r.id; o.textContent = r.name;
+    if (r.id === 'barrie') o.selected = true;
+    area.appendChild(o);
+  });
+  var other = document.createElement('option'); other.value = 'other'; other.textContent = 'Somewhere else'; area.appendChild(other);
+
+  function money(v){ return '$' + (Math.round(v / 5000) * 5000).toLocaleString('en-CA'); }
+  function short(v){ var k = Math.round(v / 5000) * 5; return k >= 1000 ? '$' + (k / 1000).toFixed(2).replace(/0+$/, '').replace(/\.$/, '') + 'M' : '$' + k + 'K'; }
+
+  function estimate(){
+    var r = D.regions.filter(function(x){ return x.id === area.value; })[0];
+    var type = $('hv-type').value, beds = +$('hv-beds').value, cond = +$('hv-cond').value;
+    if (!r || r.status !== 'live') return null;
+    var base = null, basis = '';
+    var t = r.types && r.types[type];
+    var month = r.month || D.month;
+    if (t && t[1] && (t[0] === null || t[0] === -1 || t[0] >= (D.minSales || 5))){
+      base = t[1];
+      basis = 'Based on the average price of ' + TYPE_NAMES[type] + ' in ' + r.name + ' (' + month + '): ' + money(base) + '.';
+    } else if (r.avg){
+      base = r.avg;
+      basis = 'Based on the average price of all homes sold in ' + r.name + ' (' + month + '): ' + money(base) + '. There weren\'t enough ' + TYPE_NAMES[type] + ' sales to use on their own.';
+    }
+    if (!base) return null;
+    var bedAdj = Math.max(-MAX_BED_ADJ, Math.min(MAX_BED_ADJ, (beds - TYPICAL_BEDS[type]) * PER_BED));
+    var point = base * (1 + bedAdj) * (1 + cond);
+    return {lo: point * (1 - SPREAD), hi: point * (1 + SPREAD), basis: basis + ' Adjusted for bedrooms and condition.', region: r.name};
+  }
+
+  $('est').addEventListener('submit', function(e){
+    e.preventDefault();
+    var est = estimate();
+    $('hv-empty').hidden = true;
+    var rng = $('hv-range');
+    if (est){
+      $('hv-range-l').textContent = 'Ballpark value';
+      $('hv-range-v').textContent = short(est.lo) + ' to ' + short(est.hi);
+      $('hv-basis').textContent = est.basis;
+      $('x-ballpark').value = money(est.lo) + ' to ' + money(est.hi);
+    } else {
+      $('hv-range-l').textContent = 'Ballpark value';
+      $('hv-range-v').textContent = 'Let me run it';
+      $('hv-basis').textContent = 'I don\'t have enough published sales data for that area to give an instant ballpark. Request your exact value below and I\'ll prepare it personally.';
+      $('x-ballpark').value = 'Not available for this area';
+    }
+    rng.hidden = false;
+    $('x-address').value = $('hv-address').value;
+    $('x-area').value = area.options[area.selectedIndex].text;
+    $('x-type').value = $('hv-type').options[$('hv-type').selectedIndex].text;
+    $('x-beds').value = $('hv-beds').options[$('hv-beds').selectedIndex].text;
+    $('x-cond').value = $('hv-cond').options[$('hv-cond').selectedIndex].text;
+    $('hv-exact').hidden = false;
+    if (window.innerWidth < 860) rng.scrollIntoView({behavior: 'smooth', block: 'start'});
+  });
+})();
+</script>
+</body>
+</html>
