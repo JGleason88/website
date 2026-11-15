@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>CRM · Josh Gleason</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/crm/crm.css">
+</head>
+<body>
+<div id="auth"></div>
+
+<div id="app" hidden>
+  <nav class="side">
+    <a class="logo" href="#/dashboard">JOSH<span>.</span>CRM</a>
+    <a class="nav" data-route="dashboard" href="#/dashboard">▦ <span>Dashboard</span></a>
+    <a class="nav" data-route="pipeline" href="#/pipeline">⇶ <span>Pipeline</span></a>
+    <a class="nav" data-route="contacts" href="#/contacts">☰ <span>Contacts</span></a>
+    <a class="nav" data-route="tasks" href="#/tasks">✓ <span>Tasks</span><span class="n" id="taskCount" hidden></span></a>
+    <div class="grow"></div>
+    <a class="nav" data-route="account" href="#/account">⚙ <span>Account</span></a>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<div id="modal-root"></div>
+<div id="toast" hidden></div>
+
+<script src="/vendor/supabase-2.119.0.js"></script>
+<script src="/crm/config.js"></script>
+<script src="/crm/app.js"></script>
+</body>
+</html>
