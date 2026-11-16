@@ -1,0 +1,126 @@
+/* Mortgages page: rates, live market, calculators */
+
+.sec{padding:96px 0 0;scroll-margin-top:var(--head)}
+.sec h2{font-size:clamp(34px,4vw,52px);line-height:.95;margin:12px 0 14px}
+.sec .lede{max-width:760px;margin:0 0 26px}
+.ind{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:2px solid var(--line)}
+.ind > div{background:var(--surface-100);padding:24px 26px;min-width:0}
+.ind .l{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ind .v{font-family:var(--display);font-size:clamp(44px,5vw,64px);line-height:1;color:var(--paper);margin-top:10px}
+.ind .v.red{color:var(--ember)}
+.ind .s{font-size:14px;color:var(--muted);margin-top:8px}
+.ind .s b{color:var(--body);font-weight:500}
+.mwhy{font-size:16px;color:var(--muted);margin:16px 0 0;max-width:820px}
+.rt{background:var(--surface-100);border:2px solid var(--line)}
+.rt table{min-width:560px;font-size:17px}
+.rt th,.rt td{padding:16px 22px}
+.rt td{font-family:var(--display);font-size:28px;letter-spacing:.01em}
+.rt td:first-child{font-family:var(--sans);font-size:17px;font-weight:600}
+.rt td.tbd{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--muted)}
+.rt-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;border-top:1px solid var(--line)}
+.stamp{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.stamp b{color:var(--paper);font-weight:500}
+.soon{background:var(--surface-100);border:2px dashed var(--line);padding:30px 28px;color:var(--muted)}
+.soon h3{font-size:30px;margin:0 0 8px}
+.disclose{font-size:13px;line-height:1.65;color:var(--muted);margin:22px 0 0;max-width:980px}
+.calc{display:grid;grid-template-columns:1.1fr 1fr;gap:2px;background:var(--line);border:2px solid var(--line)}
+.calc .inputs,.calc .out{background:var(--surface-100);padding:30px 30px}
+.calc .out{background:var(--surface-200)}
+.f{margin-bottom:22px}
+.f label,.f .two label{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.f.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.money{display:flex;align-items:center;background:var(--ink-000);border:2px solid var(--line)}
+.money:focus-within{border-color:var(--ember)}
+.money span{padding:0 0 0 16px;color:var(--muted);font-size:20px}
+.money.pct span{padding:0 16px 0 0}
+.money input,.f select{width:100%;background:var(--ink-000);border:0;color:var(--paper);font:600 22px var(--sans);padding:14px 16px;outline:none}
+.f select{border:2px solid var(--line);font-size:17px;padding:15px 12px}
+.f select:focus{border-color:var(--ember)}
+.hint{font-size:14px;color:var(--muted);margin-top:6px}
+.hint a{color:var(--body)}
+.checks{display:flex;flex-wrap:wrap;gap:12px 28px}
+.checks label{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--paper);cursor:pointer;min-height:44px}
+.checks input{width:22px;height:22px;accent-color:var(--ember)}
+.out .big .l{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.out .big .v{font-family:var(--display);font-size:clamp(56px,6vw,84px);line-height:1;color:var(--ember);margin:8px 0 18px}
+.out dl{margin:0 0 24px}
+.out dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+.out dt{font-size:15px;color:var(--body)}
+.out dt .sub{color:var(--muted);font-size:13px}
+.out dd{margin:0;font-weight:700;color:var(--paper);font-size:17px;white-space:nowrap}
+.warn{background:#2a1110;border-left:6px solid var(--ember);color:var(--paper);font-size:15px;padding:12px 16px;margin:0 0 14px}
+@media (max-width:860px){.calc{grid-template-columns:1fr}}
+.calc .inputs .rf-step{font-size:24px;margin:6px 0 16px;color:var(--paper)}
+.calc .inputs .rf-step:not(:first-child){margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.debt{display:grid;grid-template-columns:1.3fr 1fr .7fr .9fr 44px;gap:10px;align-items:end;margin-bottom:12px}
+.debt label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.debt input{width:100%;background:var(--ink-000);border:2px solid var(--line);color:var(--paper);font:600 17px var(--sans);padding:11px 10px;outline:none;min-width:0}
+.debt input:focus{border-color:var(--ember)}
+.debt .rm{width:44px;height:48px;background:transparent;border:2px solid var(--line);color:var(--muted);font-size:22px;cursor:pointer}
+.debt .rm:hover{border-color:var(--ember);color:var(--paper)}
+.btn.add{padding:11px 18px;font-size:15px;margin-top:4px}
+.sub2{font-size:15px;color:var(--body);margin:-8px 0 18px}
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;background:var(--ink-000);padding:18px 20px;margin:0 0 14px}
+.cmp .l{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cmp .n{font-family:var(--display);font-size:38px;line-height:1.1;color:var(--paper)}
+.cmp .n.red{color:var(--ember)}
+.cmp .s{font-size:13px;color:var(--muted)}
+.cmp .arr{font-size:30px;color:var(--ember)}
+.keep{background:var(--surface-100);border-left:6px solid var(--ember);padding:16px 18px;font-size:16px;color:var(--body);margin:0 0 22px}
+.keep b{color:var(--paper)}
+.pos{color:#8fd6a0 !important}
+@media (max-width:640px){.debt{grid-template-columns:1fr 1fr}.debt .rm{grid-column:2;justify-self:end}}
+@media (max-width:860px){.ind{grid-template-columns:1fr}}
+
+/* tables */
+.tbl{overflow-x:auto;margin:24px 0 10px}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:520px}
+th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+th:first-child{text-align:left}
+/* calculator chooser */
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:2px solid var(--line);margin-top:40px}
+.tool{background:var(--ink-000);padding:28px 24px 26px;text-decoration:none;display:flex;flex-direction:column;min-height:250px;transition:background .2s}
+.tool:hover{background:var(--surface-100)}
+.tool .num{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.12em}
+.tool h3{font-size:34px;line-height:.95;margin:auto 0 10px}
+.tool p{font-size:15px;margin:0 0 18px}
+.tool .go{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ember);text-transform:uppercase}
+.tool.hot{background:var(--ember)}
+.tool.hot h3,.tool.hot p,.tool.hot .go,.tool.hot .num{color:var(--ink-000)}
+.tool.hot:hover{background:#ff3b35}
+/* all-in-one */
+.helper{margin:-6px 0 4px;background:var(--ink-000);border:1px solid var(--line);padding:12px 16px}
+.helper summary{cursor:pointer;color:var(--paper);font-weight:600;font-size:15px}
+.helper-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin:16px 0 8px}
+.helper-grid label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.helper-grid .money input{font-size:17px;padding:10px 12px}
+.savebar{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);margin:0 0 16px}
+.savebar>div{background:var(--ink-000);padding:16px 18px}
+.savebar .l{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.savebar .n{font-family:var(--display);font-size:34px;line-height:1.1;color:#8fd6a0}
+.savebar .s{font-size:13px;color:var(--muted)}
+table.three{min-width:0;font-size:15px;margin:0 0 12px}
+table.three td,table.three th{padding:10px 8px}
+table.three td{color:var(--paper);font-weight:600}
+table.three td:first-child{font-weight:500;color:var(--body);white-space:normal}
+table.three tr.hot td{color:var(--ember)}
+table.three tr.hot td:first-child{color:var(--paper);font-weight:600}
+table.three .s{font-size:12px;color:var(--muted);font-weight:400}
+.sw{display:inline-block;width:14px;height:4px;margin-right:8px;vertical-align:middle}
+.sw.dash{background:repeating-linear-gradient(90deg,#cfcfd3 0 5px,transparent 5px 9px)}
+.vsb{font-size:15px;color:var(--body);margin:0 0 14px}
+.vsb b{color:var(--paper)}
+.chart{background:var(--ink-000);padding:10px 8px 4px;margin:0 0 20px}
+.chart svg{width:100%;height:auto;display:block}
+.dim{opacity:.4}
+.aio-foot{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;margin-top:56px;align-items:start}
+.aio-foot .ticks li span{display:block}
+@media (max-width:960px){.tools{grid-template-columns:1fr 1fr}.aio-foot{grid-template-columns:1fr}}
+@media (max-width:560px){.tools{grid-template-columns:1fr}.helper-grid{grid-template-columns:1fr}.tool{min-height:0}}
+.calc>*,.sec{min-width:0}
+.rt{overflow:hidden}
+.rt .tbl{overflow-x:auto}
+@media (max-width:560px){.rt th,.rt td{padding:12px 12px}.rt td{font-size:22px}.rt table{min-width:0}.calc .inputs,.calc .out{padding:22px 18px}.f.two{grid-template-columns:1fr}}
+@media (max-width:560px){.out dl div{flex-wrap:wrap}.out dd{white-space:normal}}

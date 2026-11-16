@@ -9,6 +9,9 @@
 
   function typeFor(form, f) {
     if (form === 'home-value') return 'Seller';
+    if (form === 'pre-approval') return 'Buyer';
+    if (form === 'power-of-sale-list') return f.looking_for === 'A home to live in' ? 'Buyer' : 'Investor';
+    if (form === 'all-in-one-analysis') return 'Mortgage';
     if (form === 'renewal-review') return 'Renewal';
     var s = f.service || '';
     if (/sell/i.test(s)) return 'Seller';
@@ -31,12 +34,16 @@
       v = v.trim(); if (!v) return;
       var n = k.toLowerCase().replace(/-/g, '_');
       if (CORE.indexOf(n) >= 0) p[n] = v;
-      fields[k] = v; norm[n] = v;
+      fields[k] = fields[k] ? fields[k] + ', ' + v : v; norm[n] = fields[k];
     });
     p.fields = fields;
     p.type = typeFor(p.form, norm);
     p.tags = [];
     if (norm.first_time_home_buyer) p.tags.push('First-time buyer');
+    if (p.form === 'pre-approval') p.tags.push('Pre-approval');
+    if (p.form === 'power-of-sale-list') p.tags.push('POS list');
+    if (norm.needs_financing) p.tags.push('Needs financing');
+    if (p.form === 'all-in-one-analysis') p.tags.push('All-in-One');
     if (norm.email_consent) {
       p.consent_email = true;
       var fine = form.querySelector('.consent-fine'), lbl = form.querySelector('.consent span');

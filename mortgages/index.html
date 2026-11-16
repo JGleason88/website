@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mortgage Rates &amp; Calculators | Purchase, Refinance, All-in-One | Joshua Gleason</title>
+<meta name="description" content="This week's mortgage rates, the market live from the Bank of Canada, and purchase, refinance and All-in-One mortgage calculators from Joshua Gleason, Mortgage Agent Level 2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/chrome.css">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/mortgages.css">
+<link rel="canonical" href="https://joshuagleason.ca/mortgages/">
+</head>
+<body>
+<!-- @header -->
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="wordmark" href="/">JOSHUA GLEASON<span>.</span></a>
+    <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="links">MENU</button>
+    <nav class="links" id="links" aria-label="Main">
+      <a href="/buy/" data-sec="buy">Buy</a>
+      <a href="/sell/" data-sec="sell">Sell</a>
+      <a href="/mortgages/" data-sec="mortgages">Mortgages</a>
+      <a href="/intel/" data-sec="intel">Market Intel</a>
+      <a href="/about/" data-sec="about">About</a>
+      <a class="btn" href="https://calendar.app.google/Dbp5daUcAbNquavv6" target="_blank" rel="noopener">Book a call</a>
+    </nav>
+    <div class="brands" aria-label="Brokerages">
+      <img src="/img/sutton.png" alt="Sutton Group Incentive Realty Inc., Brokerage" width="36" height="34">
+      <img class="ybm" src="/img/ybm-white-600.png" alt="DLC Yellow Brick Mortgages" width="73" height="30">
+    </div>
+  </div>
+</header>
+<!-- /@header -->
+
+<main>
+  <section class="phero" style="padding-bottom:64px">
+    <div class="wrap">
+      <div class="kicker">Mortgages · Rates &amp; calculators</div>
+      <h1>Run the numbers. <em>Then let's beat them.</em></h1>
+      <p class="lead" style="max-width:760px">Pick a calculator, check this week's rates, or start your pre-approval. When you're ready, I'll shop dozens of lenders for the exact rate for your situation.</p>
+      <div class="tools">
+        <a class="tool" href="#purchase"><span class="num">01</span><h3>Purchase calculator</h3><p>Your payment, mortgage insurance and the stress test.</p><span class="go">Calculate →</span></a>
+        <a class="tool" href="#refinance"><span class="num">02</span><h3>Refinance calculator</h3><p>Roll your debts into one payment and see the savings.</p><span class="go">Calculate →</span></a>
+        <a class="tool hot" href="#all-in-one"><span class="num">03</span><h3>All-in-One calculator</h3><p>The mortgage strategy that could save you thousands in interest.</p><span class="go">See my savings →</span></a>
+        <a class="tool" href="/buy/#pre-approval"><span class="num">04</span><h3>Get pre-approved now</h3><p>Start your secure application in minutes.</p><span class="go">Start my application →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" role="img" aria-label="House keys and a model home" style="background-image:url(/img/stock/mortgage-band.jpg);background-position:center 55%"></div>
+
+  <div class="wrap">
+    <section class="sec" id="rates" style="padding-top:88px">
+      <div class="kicker">My best available rates</div>
+      <h2>This week's <em>rates.</em></h2>
+      <p class="lede">The best rates I can access through DLC Yellow Brick Mortgages, updated weekly. Your rate depends on your situation, so use these as a starting point.</p>
+      <div class="rt">
+        <div class="tbl" style="margin:0">
+          <table>
+            <thead><tr><th scope="col">Term</th><th scope="col">Insured<br>(under 20% down)</th><th scope="col">Uninsured<br>(20%+ down)</th></tr></thead>
+            <tbody id="rate-rows">
+              <tr><td>3-Year Fixed</td><td>4.54%</td><td>4.79%</td></tr>
+              <tr><td>5-Year Fixed</td><td>4.59%</td><td>4.89%</td></tr>
+              <tr><td>5-Year Variable</td><td>3.95%</td><td>4.20%</td></tr>
+              <tr><td>HELOC</td><td class="tbd">n/a</td><td class="tbd">Ask me</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="rt-foot">
+          <div class="stamp" id="rate-stamp">Updated <b>Nov 9, 2026</b></div>
+          <a class="btn" href="#review">Get my exact rate</a>
+        </div>
+      </div>
+      <p class="disclose">Rates shown are the best available rates offered through DLC Yellow Brick Mortgages (FSRA Brokerage Lic. #13854) as of the date posted, and are subject to change without notice. Rates are offered on approved credit (OAC) and depend on property type, down payment or equity, amortization, credit history, income verification and lender criteria. Insured rates require mortgage default insurance. Not all borrowers will qualify for the rates shown. Rates are for information only and are not a commitment to lend. Contact Joshua Gleason, Mortgage Agent Level 2 (M19002343), for a personalized quote.</p>
+    </section>
+
+    <section class="sec" id="market">
+      <div class="kicker">What's moving rates</div>
+      <h2>The market, <em>live.</em></h2>
+      <p class="lede">These come straight from the Bank of Canada and update on their own.</p>
+      <div class="ind">
+        <div><div class="l">Bank of Canada policy rate</div><div class="v" id="ind-policy">2.50%</div><div class="s">As of <b id="ind-policy-d">Oct 28, 2026</b></div></div>
+        <div><div class="l">Prime rate</div><div class="v red" id="ind-prime">4.70%</div><div class="s">Drives variable rates and HELOCs</div></div>
+        <div><div class="l">5-year Government of Canada bond yield</div><div class="v" id="ind-bond">3.39%</div><div class="s">As of <b id="ind-bond-d">Nov 5, 2026</b> · drives fixed rates</div></div>
+      </div>
+      <p class="mwhy">Variable rates and HELOCs move with prime, which follows the Bank of Canada. Fixed rates follow the 5-year bond yield. Prime shown is the big-bank standard of the policy rate plus 2.20%. Source: Bank of Canada.</p>
+    </section>
+
+    <section class="sec" id="purchase">
+      <div class="kicker">Purchase calculator</div>
+      <h2>What would my <em>payment be?</em></h2>
+      <p class="lede">Canadian math: semi-annual compounding, mortgage insurance and the stress test built in.</p>
+      <form class="calc" id="mc" novalidate>
+        <div class="inputs">
+          <div class="f"><label for="mc-price">Purchase price</label><div class="money"><span>$</span><input id="mc-price" inputmode="numeric" value="750,000"></div></div>
+          <div class="f"><label for="mc-down">Down payment</label><div class="money"><span>$</span><input id="mc-down" inputmode="numeric" value="75,000"></div><div class="hint" id="mc-down-pct"></div></div>
+          <div class="f"><label for="mc-rate">Interest rate</label><div class="money pct"><input id="mc-rate" inputmode="decimal" value="4.49"><span>%</span></div><div class="hint">Example rate. <a href="#rates">See this week's rates</a></div></div>
+          <div class="f two">
+            <div><label for="mc-amort">Amortization</label><select id="mc-amort"><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+            <div><label for="mc-freq">Payments</label><select id="mc-freq"><option value="m" selected>Monthly</option><option value="bw">Bi-weekly</option><option value="abw">Accelerated bi-weekly</option><option value="w">Weekly</option><option value="aw">Accelerated weekly</option></select></div>
+          </div>
+          <div class="checks">
+            <label><input type="checkbox" id="mc-ftb"> First-time buyer</label>
+            <label><input type="checkbox" id="mc-new"> New build</label>
+          </div>
+        </div>
+        <div class="out" aria-live="polite">
+          <div class="big"><div class="l" id="mc-pay-l">Monthly payment</div><div class="v" id="mc-pay">$0</div></div>
+          <div class="warn" id="mc-warn" hidden></div>
+          <dl>
+            <div><dt>Mortgage amount</dt><dd id="mc-loan">$0</dd></div>
+            <div><dt>Mortgage insurance</dt><dd id="mc-ins">$0</dd></div>
+            <div><dt>Ontario tax on insurance <span class="sub">(paid at closing)</span></dt><dd id="mc-pst">$0</dd></div>
+            <div><dt>Balance after a 5-year term</dt><dd id="mc-bal">$0</dd></div>
+            <div><dt>Interest paid in 5 years</dt><dd id="mc-int5">$0</dd></div>
+            <div><dt>Stress test payment <span class="sub" id="mc-qr"></span></dt><dd id="mc-stress">$0</dd></div>
+          </dl>
+          <a class="btn" href="/buy/#pre-approval">Get pre-approved</a>
+        </div>
+      </form>
+      <p class="disclose">For illustration only. Assumes a fixed rate for the full amortization, compounded semi-annually, with mortgage insurance premiums of 0.60% to 4.00% (plus 0.20% on 30-year insured mortgages) added to the mortgage, and Ontario's 8% sales tax on the premium paid at closing. Insured 30-year amortizations are available to first-time buyers and buyers of new builds. The stress test uses the greater of 5.25% or your rate plus 2%. Excludes property tax, condo fees, heating and closing costs. Your actual payment depends on your lender, approval and final terms.</p>
+    </section>
+
+    <section class="sec" id="refinance">
+      <div class="kicker">Refinance &amp; debt consolidation</div>
+      <h2>Roll it all into <em>one payment.</em></h2>
+      <p class="lede">Enter your mortgage and your other debts. See what one consolidated mortgage would cost each month, and what it does to the interest you pay.</p>
+      <form class="calc rf" id="rf" novalidate>
+        <div class="inputs">
+          <h3 class="rf-step">1 · Your home and mortgage</h3>
+          <div class="f two">
+            <div><label for="rf-value">Home value</label><div class="money"><span>$</span><input id="rf-value" class="m" inputmode="numeric" value="800,000"></div></div>
+            <div><label for="rf-bal">Mortgage balance</label><div class="money"><span>$</span><input id="rf-bal" class="m" inputmode="numeric" value="420,000"></div></div>
+          </div>
+          <div class="f two">
+            <div><label for="rf-rate">Mortgage rate</label><div class="money pct"><input id="rf-rate" inputmode="decimal" value="5.39"><span>%</span></div></div>
+            <div><label for="rf-pay">Monthly payment</label><div class="money"><span>$</span><input id="rf-pay" class="m" inputmode="numeric" value="2,750"></div></div>
+          </div>
+          <h3 class="rf-step">2 · Your other debts</h3>
+          <div class="debts" id="rf-debts"></div>
+          <button type="button" class="btn ghost add" id="rf-add">+ Add a debt</button>
+          <h3 class="rf-step">3 · The new mortgage</h3>
+          <div class="f two">
+            <div><label for="rf-nrate">New rate</label><div class="money pct"><input id="rf-nrate" inputmode="decimal" value="4.49"><span>%</span></div><div class="hint">Example rate</div></div>
+            <div><label for="rf-namort">Amortization</label><select id="rf-namort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+          </div>
+          <div class="f two">
+            <div><label for="rf-pen">Prepayment penalty</label><div class="money"><span>$</span><input id="rf-pen" class="m" inputmode="numeric" value=""></div><div class="hint">Auto-estimated at 3 months' interest. Fixed-rate penalties can be much higher; ask your lender.</div></div>
+            <div><label for="rf-fees">Legal &amp; appraisal</label><div class="money"><span>$</span><input id="rf-fees" class="m" inputmode="numeric" value="1,500"></div><div class="hint">Estimate</div></div>
+          </div>
+        </div>
+        <div class="out" aria-live="polite">
+          <div class="big"><div class="l">Monthly cash flow savings</div><div class="v" id="rf-save">$0</div><div class="sub2" id="rf-save-yr"></div></div>
+          <div class="warn" id="rf-warn" hidden></div>
+          <div class="cmp">
+            <div><div class="l">Today</div><div class="n" id="rf-now">$0</div><div class="s">per month, all payments</div></div>
+            <div class="arr" aria-hidden="true">→</div>
+            <div><div class="l">Consolidated</div><div class="n red" id="rf-new">$0</div><div class="s">one mortgage payment</div></div>
+          </div>
+          <dl>
+            <div><dt>New mortgage amount</dt><dd id="rf-loan">$0</dd></div>
+            <div><dt>Loan-to-value <span class="sub">(max 80%)</span></dt><dd id="rf-ltv">0%</dd></div>
+            <div><dt>Debts paid off</dt><dd id="rf-debt-tot">$0</dd></div>
+            <div><dt>Interest over the next 5 years</dt><dd id="rf-i5">$0</dd></div>
+            <div><dt>Total interest, today's path vs new</dt><dd id="rf-life">$0</dd></div>
+          </dl>
+          <div class="keep" id="rf-keep"></div>
+          <a class="btn" href="#review">Run my real numbers</a>
+        </div>
+      </form>
+      <p class="disclose">For illustration only. Today's path assumes you keep making your current payments until each debt is paid off; debts are compounded monthly and mortgages semi-annually. "Total interest" compares interest until everything is paid off on today's path against the full new amortization, so stretching debt over a longer period can cost more over time even when the monthly payment drops. Refinances are generally limited to 80% of your home's value and require qualifying, including the stress test. Prepayment penalties vary by lender and can be much higher than shown on fixed-rate mortgages. Excludes property tax and other housing costs. Contact Joshua Gleason, Mortgage Agent Level 2 (M19002343), DLC Yellow Brick Mortgages (FSRA Brokerage Lic. #13854), for real numbers.</p>
+    </section>
+
+    <section class="sec" id="all-in-one">
+      <div class="kicker">All-in-One Mortgage Calculator</div>
+      <h2>Pay it off years sooner, <em>save thousands.</em></h2>
+      <p class="lede">An all-in-one mortgage works like a giant chequing account: your whole paycheque goes against the balance the day it lands, and interest is charged daily on what's left. See how much faster you'd be mortgage-free, compared with your current mortgage.</p>
+      <form class="calc aio" id="aio" novalidate>
+        <div class="inputs">
+          <h3 class="rf-step">1 · Your current mortgage</h3>
+          <div class="f two">
+            <div><label for="aio-bal">Mortgage balance</label><div class="money"><span>$</span><input id="aio-bal" class="m" inputmode="numeric" value="450,000"></div></div>
+            <div><label for="aio-rate">Interest rate</label><div class="money pct"><input id="aio-rate" inputmode="decimal" value="4.79"><span>%</span></div></div>
+          </div>
+          <div class="f two">
+            <div><label for="aio-amort">Years left to pay</label><select id="aio-amort"><option>15</option><option>20</option><option selected>22</option><option>25</option><option>30</option></select></div>
+            <div><label for="aio-pay">Monthly payment</label><div class="money"><span>$</span><input id="aio-pay" class="m" inputmode="numeric" value="" placeholder="Optional"></div><div class="hint" id="aio-pay-hint">Leave blank and I'll estimate it.</div></div>
+          </div>
+
+          <h3 class="rf-step">2 · Your cash flow</h3>
+          <div class="f two">
+            <div><label for="aio-inc">Monthly take-home pay</label><div class="money"><span>$</span><input id="aio-inc" class="m" inputmode="numeric" value="9,500"></div><div class="hint">Household, after tax</div></div>
+            <div><label for="aio-exp">Monthly expenses</label><div class="money"><span>$</span><input id="aio-exp" class="m" inputmode="numeric" value="5,200"></div><div class="hint">Everything except your mortgage and debt payments</div></div>
+          </div>
+          <details class="helper">
+            <summary>Help me add up my expenses</summary>
+            <div class="helper-grid">
+              <div><label>Property tax</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="450"></div></div>
+              <div><label>Utilities &amp; phones</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="450"></div></div>
+              <div><label>Home &amp; car insurance</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="350"></div></div>
+              <div><label>Groceries</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="1,200"></div></div>
+              <div><label>Gas &amp; transport</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="500"></div></div>
+              <div><label>Childcare &amp; kids</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="600"></div></div>
+              <div><label>Subscriptions &amp; memberships</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="150"></div></div>
+              <div><label>Dining, fun &amp; shopping</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="800"></div></div>
+              <div><label>Savings &amp; investing</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="400"></div></div>
+              <div><label>Everything else</label><div class="money"><span>$</span><input class="exp-h" inputmode="numeric" placeholder="300"></div></div>
+            </div>
+            <p class="hint">Total: <b id="exp-total">$0</b>. This fills in your monthly expenses above.</p>
+          </details>
+          <div class="f two" style="margin-top:18px">
+            <div><label for="aio-freq">How often are you paid?</label><select id="aio-freq"><option value="w">Weekly</option><option value="bw" selected>Every two weeks</option><option value="sm">Twice a month</option><option value="m">Monthly</option></select></div>
+            <div><label for="aio-lump">Yearly lump sum (optional)</label><div class="money"><span>$</span><input id="aio-lump" class="m" inputmode="numeric" value="" placeholder="Bonus, tax refund"></div></div>
+          </div>
+          <p class="hint">Spare cash each month after expenses and payments: <b id="aio-surplus">$0</b></p>
+
+          <h3 class="rf-step">3 · Other debts (optional)</h3>
+          <label class="checks" style="display:flex"><span style="display:flex;align-items:center;gap:10px;color:var(--paper);font-size:16px;cursor:pointer"><input type="checkbox" id="aio-consol" style="width:22px;height:22px;accent-color:var(--ember)"> Consolidate my car loans, lines of credit and credit cards</span></label>
+          <div id="aio-debt-box" hidden>
+            <p class="hint" style="margin:6px 0 14px">Rolling high-interest debt into the all-in-one at a mortgage rate makes the strategy work harder and increases your savings.</p>
+            <div class="debts" id="aio-debts"></div>
+            <button type="button" class="btn ghost add" id="aio-add">+ Add a debt</button>
+          </div>
+
+          <h3 class="rf-step">4 · The all-in-one</h3>
+          <div class="f two">
+            <div><label for="aio-arate">All-in-one rate</label><div class="money pct"><input id="aio-arate" inputmode="decimal" value="4.95"><span>%</span></div><div class="hint">Estimated rate. Usually variable.</div></div>
+            <div><label for="aio-fee">Monthly account fee</label><div class="money"><span>$</span><input id="aio-fee" inputmode="decimal" value="16.95"></div><div class="hint">Typical fee; includes unlimited banking</div></div>
+          </div>
+        </div>
+
+        <div class="out" id="aio-out" aria-live="polite">
+          <div class="big"><div class="l">Mortgage-free with an all-in-one</div><div class="v" id="aio-free">—</div><div class="sub2" id="aio-free-sub"></div></div>
+          <div class="warn" id="aio-warn" hidden></div>
+          <div class="savebar">
+            <div><div class="l">Interest saved</div><div class="n" id="aio-saved">$0</div><div class="s">vs your current plan, after fees</div></div>
+            <div><div class="l">Time saved</div><div class="n" id="aio-time-saved">—</div><div class="s">debt-free</div></div>
+          </div>
+          <table class="three">
+            <thead><tr><th></th><th>Debt-free in</th><th>Total interest</th></tr></thead>
+            <tbody>
+              <tr><td><i class="sw" style="background:#8b8b92"></i>Current plan, as-is</td><td id="a-time">—</td><td id="a-int">$0</td></tr>
+              <tr><td><i class="sw dash"></i>Current plan + prepaying your spare cash</td><td id="b-time">—</td><td id="b-int">$0</td></tr>
+              <tr class="hot"><td><i class="sw" style="background:#ff211a"></i>All-in-One<div class="s" id="c-fees"></div></td><td id="c-time">—</td><td id="c-int">$0</td></tr>
+            </tbody>
+          </table>
+          <p class="vsb" id="aio-vsb"></p>
+          <div class="chart" id="aio-chart"></div>
+          <a class="btn" href="#aio-lead">Get my personalized analysis</a>
+        </div>
+      </form>
+
+      <div class="aio-foot">
+        <div>
+          <div class="kicker">Is this right for you?</div>
+          <h3 style="font-size:clamp(30px,3.6vw,44px);line-height:.95;margin:12px 0 16px">It works brilliantly, <em>for the right person.</em></h3>
+          <ul class="ticks">
+            <li><span><strong>You need to spend less than you earn.</strong> Your spare cash is what pays the mortgage down. It's a line of credit, so overspending makes the balance grow instead.</span></li>
+            <li><span><strong>The rate is usually variable.</strong> If rates rise, your interest rises with them.</span></li>
+            <li><span><strong>You need to qualify,</strong> including the stress test, and have enough equity in your home.</span></li>
+            <li><span><strong>It rewards discipline.</strong> Your full borrowing limit is always available, which is great for emergencies and risky if spending creeps up.</span></li>
+          </ul>
+          <p class="disclose">For illustration only. The current plan uses your payment with semi-annual compounding, and your other debts at their own rates and payments. "Prepaying" puts your monthly spare cash, freed-up debt payments and lump sums against your current mortgage, limited to an assumed 20% of the starting balance per year. The all-in-one deposits your pay on each payday, spends your expenses evenly through the month, charges interest daily on the balance at the rate shown and posts it monthly, and adds the monthly fee; your rate is assumed not to change. Excludes penalties to break your current mortgage, legal and appraisal costs, and any changes to your income or spending. Not a commitment to lend; requires approval. Joshua Gleason, Mortgage Agent Level 2 (M19002343), DLC Yellow Brick Mortgages (FSRA Brokerage Lic. #13854).</p>
+        </div>
+        <form class="form" id="aio-lead" name="all-in-one-analysis" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company">
+          <input type="hidden" name="form-name" value="all-in-one-analysis">
+          <p hidden><label>Leave blank <input name="company"></label></p>
+          <input type="hidden" name="calculator_results" id="x-aio">
+          <h3>Get my personalized analysis</h3>
+          <p class="sub">I'll run your real numbers, including your current lender's penalty and what you'd qualify for, and send you a side-by-side.</p>
+          <div class="two">
+            <div><label for="al-fn">First name</label><input id="al-fn" name="first_name" required autocomplete="given-name"></div>
+            <div><label for="al-ln">Last name</label><input id="al-ln" name="last_name" autocomplete="family-name"></div>
+          </div>
+          <label for="al-em">Email</label><input id="al-em" type="email" name="email" required autocomplete="email">
+          <label for="al-ph">Phone</label><input id="al-ph" type="tel" name="phone" autocomplete="tel">
+          <!-- @consent -->
+        <label class="consent"><input type="checkbox" name="email_consent" value="Yes"> <span>Yes, email me market updates, rate news and home-buying and mortgage tips. (Optional)</span></label>
+        <p class="consent-fine">Sent by Joshua Gleason, Sales Representative, Sutton Group Incentive Realty Inc., Brokerage, and Mortgage Agent Level 2, DLC Yellow Brick Mortgages (FSRA Lic. #13854), 18 Alliance Blvd., Unit 4, Barrie, ON L4M 5A5 · 705-715-2402 · joshuagleason.ca. You can withdraw your consent at any time using the unsubscribe link in any email or by contacting me.</p>
+        <!-- /@consent -->
+          <button class="btn" type="submit">Send me my analysis →</button>
+          <p class="fine">Your calculator numbers are sent with this form so I can start from them. By submitting, you agree to be contacted by Joshua Gleason about your mortgage.</p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <section class="alt" id="review" style="margin-top:112px">
+    <div class="wrap split">
+      <div>
+        <div class="kicker">Renewal &amp; mortgage review</div>
+        <h2>Don't just <em>sign it.</em></h2>
+        <p>Your lender's renewal letter is an opening offer, not a final one. A 15-minute review tells you whether you're leaving money behind, and whether switching, refinancing or an all-in-one makes sense.</p>
+        <div class="photo-card bw" role="img" aria-label="Joshua Gleason reviewing a mortgage file" style="background-image:url(/img/joshua-desk-pen.jpg);aspect-ratio:4/3;margin-top:28px;background-position:center 30%"></div>
+      </div>
+      <form class="form" id="renewForm" name="renewal-review" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company">
+        <input type="hidden" name="form-name" value="renewal-review">
+        <p hidden><label>Leave blank <input name="company"></label></p>
+        <h3>Free mortgage review</h3>
+        <p class="sub">I'll reply within one business day.</p>
+        <div class="two">
+          <div><label for="fn">First name</label><input id="fn" name="first_name" required autocomplete="given-name"></div>
+          <div><label for="ln">Last name</label><input id="ln" name="last_name" autocomplete="family-name"></div>
+        </div>
+        <label for="em">Email</label><input id="em" type="email" name="email" required autocomplete="email">
+        <label for="ph">Phone</label><input id="ph" type="tel" name="phone" autocomplete="tel">
+        <label for="rd">When does your mortgage renew?</label>
+        <select id="rd" name="renewal_window">
+          <option>Within 4 months</option><option>4–12 months</option><option>12–24 months</option><option>Not sure</option>
+        </select>
+        <!-- @consent -->
+        <label class="consent"><input type="checkbox" name="email_consent" value="Yes"> <span>Yes, email me market updates, rate news and home-buying and mortgage tips. (Optional)</span></label>
+        <p class="consent-fine">Sent by Joshua Gleason, Sales Representative, Sutton Group Incentive Realty Inc., Brokerage, and Mortgage Agent Level 2, DLC Yellow Brick Mortgages (FSRA Lic. #13854), 18 Alliance Blvd., Unit 4, Barrie, ON L4M 5A5 · 705-715-2402 · joshuagleason.ca. You can withdraw your consent at any time using the unsubscribe link in any email or by contacting me.</p>
+        <!-- /@consent -->
+        <button class="btn" type="submit">Review my mortgage →</button>
+        <p class="fine">By submitting, you agree to be contacted by Joshua Gleason about your mortgage. You can opt out anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="calbar">
+    <div class="wrap">
+      <a href="https://calendar.app.google/Dbp5daUcAbNquavv6" target="_blank" rel="noopener">
+        <div><div class="t">Rather just talk? <em>Book a call.</em></div><div class="s">15 minutes, no obligation. Bring your renewal letter or your questions.</div></div>
+        <span class="btn">Open my calendar →</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- @footer -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/">JOSHUA GLEASON<span>.</span></a>
+        <p style="margin:14px 0 0;max-width:320px">Real estate and mortgages for Simcoe County, Muskoka and Grey, planned together.</p>
+        <p style="margin:14px 0 0"><a href="tel:7057152402">705-715-2402</a><br><a href="mailto:josh@themortgageexperts.ca">josh@themortgageexperts.ca</a></p>
+        <div class="foot-brands">
+          <img src="/img/sutton.png" alt="Sutton Group Incentive Realty Inc., Brokerage" width="55" height="52">
+          <img class="ybm" src="/img/ybm-white-600.png" alt="DLC Yellow Brick Mortgages" width="107" height="44">
+        </div>
+      </div>
+      <div><h4>Buy &amp; sell</h4><ul><li><a href="/buy/">Buy a home</a></li><li><a href="/buy/#first-time">First-time buyers</a></li><li><a href="/buy/#power-of-sale">Power of sale list</a></li><li><a href="/sell/">Sell your home</a></li><li><a href="/sell/#value">What's my home worth?</a></li></ul></div>
+      <div><h4>Mortgages</h4><ul><li><a href="/mortgages/#rates">Today's rates</a></li><li><a href="/mortgages/#purchase">Purchase calculator</a></li><li><a href="/mortgages/#refinance">Refinance calculator</a></li><li><a href="/mortgages/#all-in-one">All-in-One calculator</a></li><li><a href="/buy/#pre-approval">Get pre-approved</a></li></ul></div>
+      <div><h4>More</h4><ul><li><a href="/intel/">Market Intel</a></li><li><a href="/sell/#market">Market map</a></li><li><a href="/about/">About Joshua</a></li><li><a href="https://calendar.app.google/Dbp5daUcAbNquavv6" target="_blank" rel="noopener">Book a call</a></li></ul></div>
+    </div>
+    <div class="legal">
+      Joshua Gleason, Sales Representative, Sutton Group Incentive Realty Inc., Brokerage. Independently owned and operated.<br>
+      Joshua Gleason, Mortgage Agent Level 2 (FSRA Lic. M19002343), DLC Yellow Brick Mortgages, FSRA Brokerage Lic. #13854, 18 Alliance Blvd., Unit 4, Barrie, ON L4M 5A5.<br>
+      Not intended to solicit buyers or sellers currently under contract. &copy; 2026 Joshua Gleason.
+    </div>
+  </div>
+</footer>
+<!-- /@footer -->
+
+<script src="/assets/site.js"></script>
+<script src="/assets/mortgage-calcs.js"></script>
+<script src="/assets/all-in-one.js"></script>
+<script src="/crm/config.js"></script>
+<script src="/assets/crm-capture.js"></script>
+</body>
+</html>

@@ -10,3 +10,17 @@
     X-Content-Type-Options = "nosniff"
     Cache-Control = "no-cache"
     Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+# Old addresses from before the redesign (Instagram links, bookmarks)
+[[redirects]]
+  from = "/rates.html"
+  to = "/mortgages/"
+  status = 301
+[[redirects]]
+  from = "/home-value.html"
+  to = "/sell/#value"
+  status = 301
+[[redirects]]
+  from = "/market-map.html"
+  to = "/sell/#market"
+  status = 301

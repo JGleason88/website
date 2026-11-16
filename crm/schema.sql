@@ -237,8 +237,17 @@ begin
             jsonb_build_object('wording', left(coalesce(p->>'consent_text', ''), 1500), 'page', left(coalesce(p->>'consent_page', ''), 200), 'form', v_form));
   end if;
 
-  insert into tasks (contact_id, title, due_date, priority)
-  values (v_id, 'Reply to website lead (' || v_form || ')', (now() at time zone 'America/Toronto')::date, 'high');
+  if v_form = 'power-of-sale-list' then
+    insert into tasks (contact_id, title, notes, due_date, priority) values
+      (v_id, 'Add to REALM power of sale alert', 'Areas: ' || coalesce(v_fields->>'areas', 'not specified'), (now() at time zone 'America/Toronto')::date, 'high'),
+      (v_id, 'Send personal follow-up: what are they looking for?', null, (now() at time zone 'America/Toronto')::date + 1, 'normal');
+  elsif v_form = 'pre-approval' then
+    insert into tasks (contact_id, title, notes, due_date, priority) values
+      (v_id, 'Pre-approval lead: check Newton for their application', 'If no application by tomorrow, call them.', (now() at time zone 'America/Toronto')::date, 'high');
+  else
+    insert into tasks (contact_id, title, due_date, priority)
+    values (v_id, 'Reply to website lead (' || v_form || ')', (now() at time zone 'America/Toronto')::date, 'high');
+  end if;
 end $$;
 revoke all on function public.capture_lead(jsonb) from public;
 grant execute on function public.capture_lead(jsonb) to anon, authenticated;
