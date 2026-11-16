@@ -168,6 +168,11 @@ footer a:hover{color:var(--paper)}
 }
 </style>
 <link rel="canonical" href="https://joshuagleason.ca/">
+<style>
+.consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0 6px;font-size:15px;line-height:1.45;color:var(--paper,#fff);font-family:var(--sans,Inter,sans-serif);letter-spacing:0;text-transform:none;cursor:pointer;font-weight:400}
+.consent input{width:20px;height:20px;min-width:20px;accent-color:var(--ember,#ff211a);margin:2px 0 0;padding:0}
+.consent-fine{font-size:12px;line-height:1.5;color:var(--muted,#8b8b92);margin:0 0 14px}
+</style>
 </head>
 <body>
 
@@ -288,6 +293,8 @@ footer a:hover{color:var(--paper)}
         <select id="rd" name="renewal_window">
           <option>Within 4 months</option><option>4–12 months</option><option>12–24 months</option><option>Not sure</option>
         </select>
+        <label class="consent"><input type="checkbox" name="email_consent" value="Yes"> <span>Yes, email me market updates, rate news and home-buying and mortgage tips. (Optional)</span></label>
+        <p class="consent-fine">Sent by Josh Gleason, Sales Representative, Sutton Group Incentive Realty Inc., Brokerage, and Mortgage Agent Level 2, DLC Yellow Brick Mortgages (FSRA Lic. #13854), 18 Alliance Blvd., Unit 4, Barrie, ON L4M 5A5 · 705-715-2402 · joshuagleason.ca. You can withdraw your consent at any time using the unsubscribe link in any email or by contacting me.</p>
         <button class="btn" type="submit">Review my renewal →</button>
         <p class="fine">By submitting, you agree to be contacted by Josh Gleason about your mortgage. You can opt out anytime.</p>
       </form>
@@ -352,6 +359,8 @@ footer a:hover{color:var(--paper)}
           <option>Get Pre-Approved</option>
         </select>
         <label class="check"><input type="checkbox" id="n-ftb" name="first_time_home_buyer" value="Yes"> First-time home buyer</label>
+        <label class="consent"><input type="checkbox" name="email_consent" value="Yes"> <span>Yes, email me market updates, rate news and home-buying and mortgage tips. (Optional)</span></label>
+        <p class="consent-fine">Sent by Josh Gleason, Sales Representative, Sutton Group Incentive Realty Inc., Brokerage, and Mortgage Agent Level 2, DLC Yellow Brick Mortgages (FSRA Lic. #13854), 18 Alliance Blvd., Unit 4, Barrie, ON L4M 5A5 · 705-715-2402 · joshuagleason.ca. You can withdraw your consent at any time using the unsubscribe link in any email or by contacting me.</p>
         <button class="btn" type="submit">Run my numbers →</button>
         <p class="fine">By submitting, you agree to be contacted by Josh Gleason about real estate and mortgage services. You can opt out anytime.</p>
       </form>

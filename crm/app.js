@@ -6,6 +6,7 @@
 var STAGES = ['New', 'Contacted', 'Appointment', 'Active', 'Under contract', 'Closed', 'Nurture', 'Lost'];
 var TYPES = ['Lead', 'Buyer', 'Seller', 'Mortgage', 'Renewal', 'Investor', 'Past client', 'Referral partner'];
 var ACT_KINDS = { note: 'Note', call: 'Call', text: 'Text', email: 'Email', meeting: 'Meeting' };
+var SYS_KINDS = { form: 'Website form', stage: 'Stage', import: 'Import', consent: 'CASL consent' };
 var FIELDS = [ // importable / exportable contact fields
   ['first_name', 'First name'], ['last_name', 'Last name'], ['email', 'Email'], ['phone', 'Phone'],
   ['address', 'Address'], ['city', 'City'], ['type', 'Type'], ['stage', 'Stage'], ['source', 'Source'],
@@ -675,7 +676,7 @@ function csvCell(v) {
   return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
 }
 function exportCsv(list, name) {
-  var cols = FIELDS.map(function (f) { return f[0]; }).concat(['created_at', 'id']);
+  var cols = FIELDS.map(function (f) { return f[0]; }).concat(['consent_at', 'consent_source', 'created_at', 'id']);
   var lines = [cols.join(',')].concat(list.map(function (c) { return cols.map(function (k) { return csvCell(c[k]); }).join(','); }));
   var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
   var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name + '-' + today() + '.csv';
@@ -833,7 +834,8 @@ async function viewContact(id) {
         '<div><label>Type</label><select name="type">' + TYPES.map(function (t) { return '<option' + (t === c.type ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select></div>' +
         input('source', 'Source') + input('lender', 'Current lender') + input('renewal_date', 'Mortgage renewal date', 'date') + input('follow_up', 'Follow-up date', 'date') +
         input('birthday', 'Birthday', 'date') +
-        '<div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--body)"><input type="checkbox" name="consent_email"' + (c.consent_email ? ' checked' : '') + '> Has agreed to receive marketing emails (CASL)</label></div>' +
+        '<div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--body)"><input type="checkbox" name="consent_email"' + (c.consent_email ? ' checked' : '') + '> Has given express consent to marketing emails (CASL)</label>' +
+          (c.consent_email ? '<div class="muted" style="font-size:12px;margin-top:4px">Since ' + esc(fmtWhen(c.consent_at)) + ' · ' + esc(c.consent_source || '') + '</div>' : '<div class="muted" style="font-size:12px;margin-top:4px">Only tick this if they actually said yes (verbally or in writing). Note how in the activity log.</div>') + '</div>' +
         '<div class="full"><label>Tags</label><div class="tagbox" id="tagbox">' + (c.tags || []).map(function (t) {
           return '<span class="chip">' + esc(t) + '<button type="button" data-act="tag-x" data-tag="' + esc(t) + '" aria-label="Remove tag">×</button></span>'; }).join('') +
           '<input id="tagIn" list="taglist" placeholder="Add tag + Enter" autocomplete="off"><datalist id="taglist">' + allTags().map(function (t) { return '<option value="' + esc(t) + '">'; }).join('') + '</datalist></div></div>' +
@@ -854,7 +856,7 @@ async function viewContact(id) {
         '</select><button class="btn sm">Log it</button></div><textarea name="body" placeholder="What happened? (call notes, what they need, next step…)" required></textarea></form>' +
         '<ul class="tl" style="margin-top:14px">' + (actCache.list.length ? actCache.list.map(function (a) {
           var data = a.data && Object.keys(a.data).length ? '<dl class="kv">' + Object.keys(a.data).map(function (k) { return '<dt>' + esc(k) + '</dt><dd>' + esc(a.data[k]) + '</dd>'; }).join('') + '</dl>' : '';
-          return '<li class="k-' + esc(a.kind) + '"><div class="when">' + esc((ACT_KINDS[a.kind] || a.kind).toUpperCase()) + ' · ' + esc(fmtWhen(a.created_at)) +
+          return '<li class="k-' + esc(a.kind) + '"><div class="when">' + esc((ACT_KINDS[a.kind] || SYS_KINDS[a.kind] || a.kind).toUpperCase()) + ' · ' + esc(fmtWhen(a.created_at)) +
             (ACT_KINDS[a.kind] ? ' <button class="x" data-act="act-del" data-id="' + esc(a.id) + '" title="Delete" aria-label="Delete entry">×</button>' : '') + '</div>' +
             '<div class="body">' + esc(a.body || '') + '</div>' + data + '</li>';
         }).join('') : '<li class="muted">No activity yet.</li>') + '</ul></section>' +

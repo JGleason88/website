@@ -40,6 +40,11 @@
 .why p{margin:0;font-size:15px;color:var(--body);line-height:1.55}
 @media (max-width:860px){.hv,.why{grid-template-columns:1fr}.f.two{grid-template-columns:1fr}}
 </style>
+<style>
+.consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0 6px;font-size:15px;line-height:1.45;color:var(--paper,#fff);font-family:var(--sans,Inter,sans-serif);letter-spacing:0;text-transform:none;cursor:pointer;font-weight:400}
+.consent input{width:20px;height:20px;min-width:20px;accent-color:var(--ember,#ff211a);margin:2px 0 0;padding:0}
+.consent-fine{font-size:12px;line-height:1.5;color:var(--muted,#8b8b92);margin:0 0 14px}
+</style>
 </head>
 <body>
 <header>
@@ -139,7 +144,9 @@
                 <option>Thinking about refinancing instead</option>
               </select></div>
             <div class="f"><label for="hv-notes">Upgrades or anything I should know? (optional)</label><textarea id="hv-notes" name="notes" placeholder="New kitchen in 2023, finished basement, pool..."></textarea></div>
-            <button class="btn go" type="submit">Get my exact value →</button>
+            <label class="consent"><input type="checkbox" name="email_consent" value="Yes"> <span>Yes, email me market updates, rate news and home-buying and mortgage tips. (Optional)</span></label>
+        <p class="consent-fine">Sent by Josh Gleason, Sales Representative, Sutton Group Incentive Realty Inc., Brokerage, and Mortgage Agent Level 2, DLC Yellow Brick Mortgages (FSRA Lic. #13854), 18 Alliance Blvd., Unit 4, Barrie, ON L4M 5A5 · 705-715-2402 · joshuagleason.ca. You can withdraw your consent at any time using the unsubscribe link in any email or by contacting me.</p>
+        <button class="btn go" type="submit">Get my exact value →</button>
           </form>
         </div>
       </div>

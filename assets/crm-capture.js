@@ -37,6 +37,12 @@
     p.type = typeFor(p.form, norm);
     p.tags = [];
     if (norm.first_time_home_buyer) p.tags.push('First-time buyer');
+    if (norm.email_consent) {
+      p.consent_email = true;
+      var fine = form.querySelector('.consent-fine'), lbl = form.querySelector('.consent span');
+      p.consent_text = ((lbl ? lbl.textContent : '') + ' ' + (fine ? fine.textContent : '')).replace(/\s+/g, ' ').trim();
+      p.consent_page = location.href.split('?')[0];
+    }
 
     var sent = false;
     function go() {

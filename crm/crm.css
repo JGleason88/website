@@ -143,6 +143,7 @@ td .chips{flex-wrap:nowrap;max-width:260px;overflow:hidden}
 .tl li::before{content:"";position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--s3)}
 .tl li.k-form::before{background:var(--ember)}
 .tl li.k-stage::before{background:var(--warn)}
+.tl li.k-consent::before{background:var(--ok)}
 .tl .when{font-size:11px;color:var(--muted);font-family:var(--mono)}
 .tl .body{white-space:pre-wrap;word-break:break-word;color:var(--paper)}
 .kv{display:grid;grid-template-columns:max-content 1fr;gap:3px 12px;font-size:12px;margin-top:4px}
