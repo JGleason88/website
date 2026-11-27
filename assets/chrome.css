@@ -1,7 +1,7 @@
 /* Joshua Gleason — header, footer and buttons shared by every page */
 :root{
   --ink-000:#0b0b0c;--surface-100:#151517;--surface-200:#1f1f22;--line:#2a2a2e;
-  --paper:#ffffff;--body:#cfcfd3;--muted:#8b8b92;--ember:#ff211a;--ember-soft:#ff7a7a;--rule:#ff211a8c;
+  --paper:#ffffff;--body:#cfcfd3;--muted:#8b8b92;--ember:#ff211a;--ember-soft:#ff7a7a;--rule:#2a2a2e;
   --display:Anton,"Bebas Neue",Impact,sans-serif;--sans:Inter,system-ui,-apple-system,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
   --wrap:1200px;--pad:clamp(20px,5vw,64px);--head:80px;
 }
@@ -13,7 +13,7 @@
 .site-head .links{display:flex;gap:26px;align-items:center;margin-left:auto}
 .site-head .links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--body);white-space:nowrap}
 .site-head .links a:hover,.site-head .links a[aria-current=page]{color:var(--paper)}
-.site-head .links a[aria-current=page]{box-shadow:inset 0 -2px 0 var(--ember);padding-bottom:4px}
+.site-head .links a[aria-current=page]{box-shadow:inset 0 -2px 0 var(--paper);padding-bottom:4px}
 .site-head .links .btn{padding:11px 18px;font-size:14px;color:var(--ink-000);box-shadow:none}
 .brands{display:flex;align-items:center;gap:14px;padding-left:22px;border-left:1px solid var(--line)}
 .brands img{height:34px;width:auto}
@@ -38,7 +38,7 @@
 @media (max-width:960px){
   .site-head .links{display:none}.menu{display:block}
   .site-head .links.open{display:flex;position:absolute;top:var(--head);left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;background:var(--ink-000);padding:24px var(--pad) 32px;border-bottom:1px solid var(--line);margin:0}
-  .site-head .links.open a[aria-current=page]{box-shadow:none;color:var(--ember)}
+  .site-head .links.open a[aria-current=page]{box-shadow:none;color:var(--paper)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:560px){.foot-grid{grid-template-columns:1fr}.wordmark{font-size:22px}}
